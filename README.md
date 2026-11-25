@@ -1,41 +1,86 @@
 # retroarchAI
 
-An environment where any SNES ROM can be loaded and **any player can be switched between human and AI control**, with the AI driven by an LLM (Claude or any LLM API).
+Load a SNES ROM and let an **LLM play it** — or hand the controller back to yourself at any time. A thin Python/`ctypes` libretro frontend drives a snes9x core; a team of Claude agents watches the screen + console RAM and presses the buttons, in a live pygame viewer you can watch, coach, and take over.
 
-> Status: early scaffolding. See [`docs/PROJECT_LOG.md`](docs/PROJECT_LOG.md) for the running build log and [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for how the pieces fit together.
+> Built for **turn-based / slower games** (RPGs, puzzles). The two it's been exercised on are **Ultima VII: The Black Gate** and **Final Fantasy III / VI (US)**.
 
-## What this is (and isn't)
+## How it plays
 
-- **Is:** a thin libretro frontend (Python + `ctypes`) that loads a SNES core, exposes the framebuffer + per-port input injection + savestates, and lets an LLM act as a player on either controller port. Works with any ROM you own.
-- **Isn't:** the `MatPoliquin/RetroArchAI` fork. That project overrides input with *trained PyTorch models* per game (60 fps, hand-coded RAM maps, no SNES example). We borrowed its UX idea — "switch a player to AI in-menu" — but not its architecture. See [`docs/DECISIONS.md`](docs/DECISIONS.md).
+An LLM takes ~0.5–5 s per decision; the SNES runs at 60 fps — so the AI does **not** play frame-by-frame. It observes, decides a short directive, and the cheap/code layer carries it out for a window of frames before re-consulting. The emulator keeps running between decisions (no frozen screen), and you can fast-forward through slow stretches.
 
-## The honest latency caveat
+Rather than one big prompt per frame, work is split across a **team of agents**, so the strong (expensive) model is called rarely and most ticks are near-zero-token code — roughly **7–12% of the tokens** a naive single-agent loop would burn.
 
-An LLM takes ~0.5–5 s per decision; SNES runs at 60 fps. So the AI does **not** play frame-by-frame. It observes, decides, and holds an action for a window of frames (optionally pausing the emulator while it thinks). This plays well for **turn-based / slower games** (RPGs, puzzles) and poorly for twitch games (fighters). See the recommended test games in `docs/ARCHITECTURE.md`.
-
-## LLM credentials note
-
-Your **Claude Code subscription powers the *building*** of this project (the assistant). **Runtime gameplay needs an API key** — Anthropic (Claude) or any OpenAI-compatible provider — configured in `config/config.yaml`. The provider layer is pluggable.
-
-## Layout
-
+```mermaid
+flowchart LR
+  EMU["SNES emulator<br/>frame + RAM"] --> SCOUT["Scout<br/>fuses screenshot + RAM"]
+  SCOUT --> PLAN["Planner<br/>sets one directive"]
+  PLAN --> EXE["Executor<br/>code + Haiku → buttons"]
+  EXE -->|buttons| EMU
+  MEM[("Memory<br/>kb · lessons · demos · story.md")] --> PLAN
+  MEM --> EXE
+  REF["Reflector<br/>distills + condenses"] --> MEM
+  HUMAN(["Human<br/>coach / play"]) --> PLAN
+  ORCH{{"Orchestrator<br/>decides when to think vs. act"}}
+  ORCH -.-> SCOUT
+  ORCH -.-> PLAN
+  ORCH -.-> EXE
+  ORCH -.-> REF
 ```
-retroarchAI/
-  init.md               # original project brief
-  config/config.yaml    # players, cadence, core, LLM provider
-  roms/                 # your SNES ROMs (gitignored)
-  saves/                # savestates (gitignored)
-  logs/                 # per-session action traces (gitignored)
-  src/
-    emulator/           # ctypes libretro frontend: core load, framebuffer, input, state
-    agents/             # LLM agent loop + action parsing
-    providers/          # pluggable LLM backends (claude, openai-compatible)
-    router/             # per-port human/AI routing + live toggle
-    app.py              # entrypoint
-  docs/                 # PROJECT_LOG, ARCHITECTURE, DECISIONS
-  tests/
-```
+
+- **Orchestrator** — the conductor (plain Python, zero tokens). Decides *when* to re-plan from cheap signals; routes everyone else.
+- **Scout** — the senses. Reads the screenshot **and** the console RAM, reconciles them (memory wins), and is the only agent that transcribes on-screen text.
+- **Planner** — the strategist (strong model, rare). Turns the Scout's report into one directive.
+- **Executor** — the hands. Deterministic code primitives (`walk`/`goto`/`interact`) with a cheap LLM fallback.
+- **Reflector** — the learner. Distills human demos/coaching into lessons and periodically condenses them.
+- **Memory** — per-game `kb.json` (clues/mechanics), `lessons.json` (strategy), `demos.json` (raw human input), `story.md` (narrative/lore, consulted only for puzzles).
+
+See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md), the running build log in [`docs/PROJECT_LOG.md`](docs/PROJECT_LOG.md), and future directions in [`docs/PROPOSALS.md`](docs/PROPOSALS.md).
+
+## Requirements
+
+- Linux (SDL/pygame), Python **3.12+** (developed on 3.14), a snes9x libretro core (`snes9x`/`snes9x2010`).
+- **No API key needed** — gameplay shells out to the local `claude` CLI, powered by a **Claude Code subscription** (Pro/Max/Team/Enterprise). Models are chosen per role (`sonnet`/`haiku`/`opus`).
+- A SNES ROM you legally own, plus an optional plain-text/markdown manual for controls.
 
 ## Quick start
 
-Not runnable yet — scaffolding in progress. The first milestone is the libretro frontend loading snes9x and stepping frames. Follow `docs/PROJECT_LOG.md`.
+```bash
+python3 -m venv .venv && .venv/bin/pip install pygame-ce
+```
+
+Drop a game into its own folder and tell the launcher which one is active:
+
+```
+roms/<game>/
+  your-rom.sfc            # the ROM (gitignored)
+  game.json              # per-game config: rom, ram_reader, controls, goal, models
+  <something>-controls.md # controls/manual the AI reads (text or markdown)
+  knowledge/             # kb.json, lessons.json, demos.json, story.md (accrue as it plays)
+  saves/                 # savestates + battery saves (gitignored)
+```
+
+`config/active.json` → `{"game": "<folder>"}` selects the game for a no-arg launch. Then:
+
+```bash
+.venv/bin/python tools/watch.py --start-mode ai
+```
+
+## Controls (the viewer)
+
+| Key | Action |
+|---|---|
+| `TAB` | toggle this port between **AI** and **HUMAN** |
+| `/` | **coach** the AI (type a hint; it steers the next decision and is saved as a lesson) |
+| `F` | fast-forward (1× → 2× → 4× → 8× → 16×) |
+| `M` | game sound on/off (muted during fast-forward) |
+| `F1` / `C` | settings overlay / constants menu (both pause) |
+| `F5` / `F9` | save / load a savestate |
+| `SPACE` · `+` · `ESC` | pause · more rounds · quit |
+
+Human play: arrows = D-pad, `Z`=B `X`=A `A`=Y `S`=X `Q`=L `W`=R, `Enter`=START, `RShift`=SELECT. While you play, the Scout keeps watching and learns from what you do.
+
+## Status
+
+Runnable and actively evolving. Everything game-specific lives under `roms/<game>/`; the per-game RAM reader (`src/emulator/memory_map.py`) turns console memory into ground-truth facts (position, HP/MP, battle state) that the agents read alongside the screen.
+
+> Not affiliated with `MatPoliquin/RetroArchAI` (a RetroArch fork that drives input with trained PyTorch models per game). This borrows only the "switch a player to AI" UX idea — the architecture is entirely different. See [`docs/DECISIONS.md`](docs/DECISIONS.md).
