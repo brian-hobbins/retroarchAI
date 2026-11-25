@@ -1,0 +1,69 @@
+{
+ "device": "Logitech Dual Action",
+ "map": {
+  "B": {
+   "type": "button",
+   "index": 2
+  },
+  "A": {
+   "type": "button",
+   "index": 1
+  },
+  "Y": {
+   "type": "button",
+   "index": 3
+  },
+  "X": {
+   "type": "button",
+   "index": 0
+  },
+  "L": {
+   "type": "button",
+   "index": 6
+  },
+  "R": {
+   "type": "button",
+   "index": 7
+  },
+  "SELECT": {
+   "type": "button",
+   "index": 8
+  },
+  "START": {
+   "type": "button",
+   "index": 9
+  },
+  "UP": {
+   "type": "hat",
+   "hat": 0,
+   "value": [
+    0,
+    1
+   ]
+  },
+  "DOWN": {
+   "type": "hat",
+   "hat": 0,
+   "value": [
+    0,
+    -1
+   ]
+  },
+  "LEFT": {
+   "type": "hat",
+   "hat": 0,
+   "value": [
+    -1,
+    0
+   ]
+  },
+  "RIGHT": {
+   "type": "hat",
+   "hat": 0,
+   "value": [
+    1,
+    0
+   ]
+  }
+ }
+}

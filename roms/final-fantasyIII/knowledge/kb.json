@@ -1,0 +1,555 @@
+{
+ "game": "final-fantasyIII",
+ "facts": [
+  {
+   "text": "Backstory: long ago the War of the Magi scorched the world and magic ceased to exist.",
+   "step": 1,
+   "ts": 1795622057
+  },
+  {
+   "text": "Intro: some would enslave the world by reviving the destructive force known as magic.",
+   "step": 18,
+   "ts": 1795622178
+  },
+  {
+   "text": "Intro narration warns that those in power may be about to repeat a senseless, deadly mistake.",
+   "step": 37,
+   "ts": 1795622315
+  },
+  {
+   "text": "After the intro narration, a night scene shows a snowy cliff ledge; holding Down there did nothing (likely cutscene).",
+   "step": 50,
+   "ts": 1795622428
+  },
+  {
+   "text": "On the night snowy-ledge scene, pressing A repeatedly did nothing.",
+   "step": 53,
+   "ts": 1795622445
+  },
+  {
+   "text": "On the snowy-ledge night scene, holding Up also did nothing; three armored mech riders stand there, one green-haired.",
+   "step": 56,
+   "ts": 1795622461
+  },
+  {
+   "text": "Vicks is a speaking character in the snowy-cliff scene with three mech-armor riders (one green-haired).",
+   "step": 62,
+   "ts": 1795622508
+  },
+  {
+   "text": "Vicks says \"There's the town\u2026\" on the snowy cliff path; the riders are overlooking a town.",
+   "step": 65,
+   "ts": 1795622520
+  },
+  {
+   "text": "Vicks calls the woman in the mech-rider group a 'sorcerer' and questions why she is with them.",
+   "step": 79,
+   "ts": 1795622658
+  },
+  {
+   "text": "Intro cutscene dialogue ignored repeated A presses on Vicks's line; it likely auto-advances on a timer.",
+   "step": 82,
+   "ts": 1795622669
+  },
+  {
+   "text": "Wedge is the other named rider with Vicks on the snowy cliff.",
+   "step": 74,
+   "ts": 1795623406
+  },
+  {
+   "text": "Vicks asks if 'it' is still alive; Wedge says probably, judging from some urgency.",
+   "step": 74,
+   "ts": 1795623406
+  },
+  {
+   "text": "In the snowy town, Terra's party of three is controllable on rooftops/ledges; a grated path leads north.",
+   "step": 9,
+   "ts": 1795624613
+  },
+  {
+   "text": "Snowy town has an INN; from the grated walkway just left of it, walking straight UP did not work.",
+   "step": 12,
+   "ts": 1795624631
+  },
+  {
+   "text": "A large gateway lies to the north of the INN area in the snowy town.",
+   "step": 12,
+   "ts": 1795624631
+  },
+  {
+   "text": "The snowy town is Narshe.",
+   "step": 15,
+   "ts": 1795624649
+  },
+  {
+   "text": "Narshe GUARDs confront our party, recognizing our mechs as Imperial Magitek Armor.",
+   "step": 15,
+   "ts": 1795624649
+  },
+  {
+   "text": "In mech battles the command menu is MagiTek / Item; choose MagiTek, then a beam, then a target.",
+   "step": 27,
+   "ts": 1795624728
+  },
+  {
+   "text": "Terra shows as '?????' on the battle screen; allies are Wedge and Vicks.",
+   "step": 27,
+   "ts": 1795624728
+  },
+  {
+   "text": "Wedge/Vicks mech beam list: Fire Beam (top-left), Bolt Beam (top-right), Ice Beam, Heal Force.",
+   "step": 30,
+   "ts": 1795624760
+  },
+  {
+   "text": "In Narshe's streets, Guards attack our mech party; first seen as a battle against two Guards.",
+   "step": 42,
+   "ts": 1795624857
+  },
+  {
+   "text": "Terra's MagiTek list has 8 skills: Fire, Bolt, Ice Beam, Bio Blast, Heal Force, Confuser, X-fer, TekMissile.",
+   "step": 45,
+   "ts": 1795624872
+  },
+  {
+   "text": "Winning a Narshe street battle gave 32 Exp; the victory box waits for A to advance.",
+   "step": 65,
+   "ts": 1795625044
+  },
+  {
+   "text": "In a Narshe cave/mine with rail tracks, a twinkling sparkle sits on the floor up-left of where Terra stood.",
+   "step": 137,
+   "ts": 1795628448
+  },
+  {
+   "text": "In the Narshe mine, walking UP+LEFT from the rocky ledge made no progress; floor extends up-right toward rail tracks.",
+   "step": 140,
+   "ts": 1795628466
+  },
+  {
+   "text": "In the Narshe mine, walking UP+RIGHT toward the tracks and wooden structure produced no progress.",
+   "step": 143,
+   "ts": 1795628490
+  },
+  {
+   "text": "In the Narshe mine, walking straight UP toward the flame from near the tracks was blocked.",
+   "step": 146,
+   "ts": 1795628511
+  },
+  {
+   "text": "At a Narshe mine track crossing, a blue sparkle (likely save point) lies left; a vertical track leads north.",
+   "step": 149,
+   "ts": 1795628532
+  },
+  {
+   "text": "At the Narshe mine track crossing, walking straight UP along the vertical track made no progress after 3 tries.",
+   "step": 152,
+   "ts": 1795628556
+  },
+  {
+   "text": "At the Narshe mine track crossing, walking LEFT toward the blue sparkle produced no progress after 3 tries.",
+   "step": 155,
+   "ts": 1795628577
+  },
+  {
+   "text": "At the Narshe mine track junction, walking DOWN made no progress; a dark gap lies south.",
+   "step": 158,
+   "ts": 1795628599
+  },
+  {
+   "text": "At the Narshe mine track junction, walking RIGHT onto the wooden walkway also made no progress after 3 tries.",
+   "step": 161,
+   "ts": 1795628619
+  },
+  {
+   "text": "A Narshe cave battle pits our party against two foes: a green-clad hunched enemy and a pale creature with a red top.",
+   "step": 176,
+   "ts": 1795628735
+  },
+  {
+   "text": "In battle with the MagiTek list open, the 'dialogue' A-press directive showed no change; use explicit cursor + A presses.",
+   "step": 185,
+   "ts": 1795628803
+  },
+  {
+   "text": "Narshe cave enemies are named Were-Rat and Repo Man.",
+   "step": 188,
+   "ts": 1795628837
+  },
+  {
+   "text": "START toggles battle pause: never press it repeatedly; if the battle looks frozen, one press then wait.",
+   "step": 199,
+   "ts": 1795628974
+  },
+  {
+   "text": "Terra's two soldier allies are Wedge and Vicks; Terra shows as '?????' on the battle screen.",
+   "step": 213,
+   "ts": 1795629120
+  },
+  {
+   "text": "Won a Narshe cave battle that awarded 47 GP; a 'Got GP' box appears on the victory screen.",
+   "step": 216,
+   "ts": 1795629133
+  },
+  {
+   "text": "Opening intro narration (War of the Magi) over a cliff scene plays on its own; just wait, press nothing.",
+   "step": 1,
+   "ts": 1795630518
+  },
+  {
+   "text": "Opening snowy cliff dialogue: a soldier says 'she' fried 50 Magitek Armored soldiers in under 3 minutes.",
+   "step": 5,
+   "ts": 1795631812
+  },
+  {
+   "text": "Opening cliff scene: pressing A on Wedge's dialogue did nothing; it seems to auto-advance, so wait.",
+   "step": 8,
+   "ts": 1795631823
+  },
+  {
+   "text": "Terra (?????) was knocked out (HP 0) in a Narshe cave battle against three Were-Rats; revive with a Fenix Down.",
+   "step": 8,
+   "ts": 1795632630
+  },
+  {
+   "text": "MagiTek skill list in battle shows Fire Beam, Bolt Beam, Ice Beam, Heal Force.",
+   "step": 11,
+   "ts": 1795632647
+  },
+  {
+   "text": "In battle, a blank blue list window with up/down arrows is an empty sub-list; back out with B before choosing a command.",
+   "step": 31,
+   "ts": 1795632815
+  },
+  {
+   "text": "In the Narshe mine cave, a prompt offers info about Save Points (Yes/No), so a Save Point is at or near this spot.",
+   "step": 33,
+   "ts": 1795633082
+  },
+  {
+   "text": "After the cave battles Terra is still KO'd (HP 0); use a Fenix Down on her from the X menu once free to walk.",
+   "step": 33,
+   "ts": 1795633082
+  },
+  {
+   "text": "The blue-white sparkle on the Narshe mine cave tracks is likely the Save Point; the party was standing at it.",
+   "step": 36,
+   "ts": 1795633098
+  },
+  {
+   "text": "At Save Points you can use a Sleeping Bag or Tent, and also save the game.",
+   "step": 39,
+   "ts": 1795633114
+  },
+  {
+   "text": "If walking does nothing at the Save Point, a message box is open; advance it with A first.",
+   "step": 39,
+   "ts": 1795633114
+  },
+  {
+   "text": "Save Point tutorial: if you perish, you can automatically play from your last save.",
+   "step": 42,
+   "ts": 1795633133
+  },
+  {
+   "text": "In the Narshe cave plank/rail area, walking RIGHT from the center spot was blocked; try other directions.",
+   "step": 50,
+   "ts": 1795633193
+  },
+  {
+   "text": "Trying to revive Terra via the X menu failed repeatedly; close the menu with B and continue the story for now.",
+   "step": 4,
+   "ts": 1795633380
+  },
+  {
+   "text": "From the Narshe mine Save Point, the way onward is right and then up along the path (per human coach).",
+   "step": 8,
+   "ts": 1795633439
+  },
+  {
+   "text": "In the Narshe cave rail area, walking UP from the center spot was also blocked.",
+   "step": 14,
+   "ts": 1795633476
+  },
+  {
+   "text": "In the Narshe cave rail area, walking DOWN+RIGHT from the center spot under the lamp frame was also blocked.",
+   "step": 17,
+   "ts": 1795633499
+  },
+  {
+   "text": "Movement is 4-way only (Up, Down, Left, Right); never use diagonal directions.",
+   "step": 18,
+   "ts": 1795633534
+  },
+  {
+   "text": "In the Narshe cave rail area, a wooden stairway at the up-left is a possible exit; the track continues north.",
+   "step": 19,
+   "ts": 1795633555
+  },
+  {
+   "text": "Below the wooden frame in the Narshe cave, the plank track leads down to a horizontal track heading right.",
+   "step": 20,
+   "ts": 1795633569
+  },
+  {
+   "text": "Human route in the Narshe cave: go up until a wall stops you, then go right (resume after any battle).",
+   "step": 26,
+   "ts": 1795633634
+  },
+  {
+   "text": "Were-Rats are random-battle enemies in the Narshe mine cave.",
+   "step": 26,
+   "ts": 1795633634
+  },
+  {
+   "text": "In battle, Magitek menu offers Fire Beam, Bolt Beam, Ice Beam, Heal Force; A on Fire Beam then A on target attacks.",
+   "step": 31,
+   "ts": 1795633722
+  },
+  {
+   "text": "Terra's battle allies are Wedge and Vicks; Terra shows as ????? in battle.",
+   "step": 38,
+   "ts": 1795633792
+  },
+  {
+   "text": "In battle, a white hand cursor beside an enemy means target select: one A press confirms the attack.",
+   "step": 42,
+   "ts": 1795633832
+  },
+  {
+   "text": "From the spot under the wooden frame on the vertical track, walking DOWN produced no movement.",
+   "step": 56,
+   "ts": 1795633939
+  },
+  {
+   "text": "Newest human route in Narshe cave: go UP, then RIGHT, then UP and go through the bars.",
+   "step": 57,
+   "ts": 1795633959
+  },
+  {
+   "text": "Latest human route in Narshe cave: go LEFT, stop at the wooden path, then go UP.",
+   "step": 64,
+   "ts": 1795634012
+  },
+  {
+   "text": "In the Narshe cave, walking LEFT from the spot right of the wooden grated stairs gave no movement.",
+   "step": 67,
+   "ts": 1795634030
+  },
+  {
+   "text": "A Vicks dialogue ('I'll handle this. Stand back!') appears on the Narshe cave path, which blocks walking until advanced.",
+   "step": 69,
+   "ts": 1795634061
+  },
+  {
+   "text": "Narshe cave torch passage: a path leads north between two torches; the wooden track runs down to the south-west.",
+   "step": 75,
+   "ts": 1795634093
+  },
+  {
+   "text": "Narshe cave: the tunnel is a dark floor path going up between two wooden supports, between torches; coach says go up it.",
+   "step": 76,
+   "ts": 1795634111
+  },
+  {
+   "text": "In the Narshe cave torch passage, pushing UP from the current spot failed 3 times; need to line up sideways first.",
+   "step": 79,
+   "ts": 1795634126
+  },
+  {
+   "text": "In the Narshe cave torch passage, walking RIGHT from the blocked spot also gave no movement.",
+   "step": 82,
+   "ts": 1795634142
+  },
+  {
+   "text": "In the Narshe cave torch passage, walking LEFT from the blocked spot gave no movement after 3 tries.",
+   "step": 85,
+   "ts": 1795634156
+  },
+  {
+   "text": "Latest coach route in Narshe torch passage: 2 steps RIGHT, then go UP.",
+   "step": 86,
+   "ts": 1795634174
+  },
+  {
+   "text": "Narshe torch passage: the coach's RIGHT step gave no movement after 3 tries; a wooden walkway exit lies down-left.",
+   "step": 89,
+   "ts": 1795634190
+  },
+  {
+   "text": "Narshe torch passage: walking DOWN+LEFT from the blocked spot also gave no movement after 3 tries.",
+   "step": 92,
+   "ts": 1795634214
+  },
+  {
+   "text": "Human order: stop walking and stay put until the human says to move again.",
+   "step": 93,
+   "ts": 1795634225
+  },
+  {
+   "text": "Terra is KO'd (0/63 HP) and needs a Fenix Down or other revive.",
+   "step": 100,
+   "ts": 1795634282
+  },
+  {
+   "text": "Latest human order: take 2 steps to the right, then stop.",
+   "step": 100,
+   "ts": 1795634282
+  },
+  {
+   "text": "Right step from the spot between the two cave lanterns is blocked; north path is open but awaits a human order.",
+   "step": 103,
+   "ts": 1795634297
+  },
+  {
+   "text": "Latest human order: walk UP and don't stop unless something stops you.",
+   "step": 104,
+   "ts": 1795634311
+  },
+  {
+   "text": "Narshe torch passage: UP is stopped after 3 tries (north end walled); next probe is straight DOWN toward the plank walkway.",
+   "step": 107,
+   "ts": 1795634331
+  },
+  {
+   "text": "A Narshe cave guard says 'We won't hand over the Esper!!'; the open box blocks walking until advanced with A.",
+   "step": 110,
+   "ts": 1795634344
+  },
+  {
+   "text": "In the Narshe torch passage, pressing A on the empty blue top window changed nothing after 3 tries.",
+   "step": 113,
+   "ts": 1795634358
+  },
+  {
+   "text": "A Narshe cave guard shouts 'Whelk! Get them!' in the torch passage, likely heralding a Whelk fight.",
+   "step": 116,
+   "ts": 1795634375
+  },
+  {
+   "text": "Whelk battle has started in the Narshe cave; Vicks speaks up at the start with 'Hold it!'.",
+   "step": 122,
+   "ts": 1795634411
+  },
+  {
+   "text": "Whelk fight: attack only the golden head; when it hides in the shell, don't attack the shell (it counters).",
+   "step": 122,
+   "ts": 1795634411
+  },
+  {
+   "text": "During the Whelk battle, Vicks's opening box shows 'Hold it! Think bac...'; repeated single A presses showed no change.",
+   "step": 125,
+   "ts": 1795634427
+  },
+  {
+   "text": "Vicks warns during the Whelk fight: 'Do you recall hearing about a monster that eats lightning\u2026\u2026'",
+   "step": 136,
+   "ts": 1795634503
+  },
+  {
+   "text": "Whelk fight: Terra is KO'd; the two other riders are alive. Avoid Bolt Beam; use Fire/Ice Beam on the head.",
+   "step": 139,
+   "ts": 1795634519
+  },
+  {
+   "text": "Surviving riders' battle beam menu: Fire Beam, Bolt Beam, Ice Beam, Heal Force.",
+   "step": 147,
+   "ts": 1795634569
+  },
+  {
+   "text": "In the Whelk battle the riders are listed as WEDGE, VICKS and ????? (Terra, shown at 0 HP).",
+   "step": 156,
+   "ts": 1795634653
+  },
+  {
+   "text": "Whelk shell with an empty dark opening on its right likely means the head is hidden; use Heal Force on allies then.",
+   "step": 164,
+   "ts": 1795634719
+  },
+  {
+   "text": "Whelk fight: Wedge dropped to 4 HP with Vicks at 65; Wedge needs Heal Force urgently.",
+   "step": 171,
+   "ts": 1795634813
+  },
+  {
+   "text": "Whelk fight: memory shows riders at 67 and 65 HP, so an on-screen 'WEDGE 4' reading may be a truncated misread.",
+   "step": 177,
+   "ts": 1795634879
+  },
+  {
+   "text": "Whelk fight: latest screen shows WEDGE 0, VICKS 56, ????? 0, so Vicks may be the only rider left standing.",
+   "step": 187,
+   "ts": 1795634967
+  },
+  {
+   "text": "Whelk fight: blind repeated A presses did nothing; wait for a command menu, and check cursor text before confirming.",
+   "step": 190,
+   "ts": 1795634980
+  },
+  {
+   "text": "Beam menu cursor defaults to Fire Beam: move it onto Heal Force and verify before pressing A when healing.",
+   "step": 195,
+   "ts": 1795635058
+  },
+  {
+   "text": "Whelk fight was lost: party Annihilated. On retry, heal early with Heal Force and never attack the shell.",
+   "step": 203,
+   "ts": 1795635104
+  },
+  {
+   "text": "Memory confirms all three party members at 0 HP in the Whelk battle: defeat is final, no healing possible; await reload.",
+   "step": 206,
+   "ts": 1795635117
+  },
+  {
+   "text": "After the Whelk defeat, a static near-black screen with one brown-clad sprite and no text box appears.",
+   "step": 213,
+   "ts": 1795635168
+  },
+  {
+   "text": "On the post-defeat dark screen, 3 attempts at single A presses produced no change.",
+   "step": 216,
+   "ts": 1795635181
+  },
+  {
+   "text": "A dark mine-track cave has a blue sparkle (likely a save point) left of the player; tracks run north, east and south.",
+   "step": 219,
+   "ts": 1795635201
+  },
+  {
+   "text": "In the mine-track cave, walking LEFT from beside the horizontal track toward the sparkle produced no change.",
+   "step": 222,
+   "ts": 1795635214
+  },
+  {
+   "text": "In the mine-track cave, walking DOWN from the starting spot also produced no change after 3 attempts.",
+   "step": 225,
+   "ts": 1795635240
+  },
+  {
+   "text": "In the blue cave area, walking UP toward the upper sparkle produced no change after 3 attempts.",
+   "step": 228,
+   "ts": 1795635258
+  },
+  {
+   "text": "In the mine-track cave, walking RIGHT toward the plank walkway also failed; UP, DOWN, LEFT, RIGHT all tried.",
+   "step": 231,
+   "ts": 1795635281
+  },
+  {
+   "text": "In the dark mine cave, the human coach says to follow the track path north (UP).",
+   "step": 232,
+   "ts": 1795635304
+  },
+  {
+   "text": "In the mine-track cave, the latest UP attempt on the track also produced no change after 3 tries.",
+   "step": 235,
+   "ts": 1795635320
+  },
+  {
+   "text": "In the cave, a battle with three Were-Rats began with ????? (Terra) at 0 HP; Wedge and Vicks were still standing.",
+   "step": 238,
+   "ts": 1795635334
+  }
+ ]
+}

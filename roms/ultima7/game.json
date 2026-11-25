@@ -1,0 +1,12 @@
+{
+  "name": "Ultima VII: The Black Gate",
+  "rom": "Ultima VII - The Black Gate.smc",
+  "ram_reader": "ultima7",
+  "controls": { "interact": "Y", "advance": "B", "cancel": "A", "menu": "START" },
+  "state": "saves/world.state",
+  "warmup": 5400,
+  "planner_model": "sonnet",
+  "executor_model": "haiku",
+  "scout_model": "sonnet",
+  "goal": "You are playing Ultima VII: The Black Gate on the SNES; you are the Avatar. The GAME MANUAL above is the AUTHORITATIVE source for controls and mechanics — follow it, and do not guess a button when the manual states it. Play to make progress: explore Britannia, walk up to and interact with people and objects (press Y to open doors, inspect containers, pick up items and start conversation), and read then respond to on-screen text or menus using the manual's controls (in conversations, highlight a keyword and press B to speak it). Prefer talking to characters over attacking harmless creatures. Use the RAM ground-truth facts given each turn: if avatar_x/avatar_y did NOT change after you moved, you hit a wall — go a different way; dialogue_cursor_index tells you which keyword is highlighted. Don't repeat a button that clearly isn't doing anything."
+}

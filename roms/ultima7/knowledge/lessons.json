@@ -1,0 +1,415 @@
+{
+ "game": "ultima7",
+ "facts": [
+  {
+   "text": "Keep exploring UP while each step still earns reward; switch direction as soon as reward falls to 0, which may signal a wall or obstacle.",
+   "step": 15,
+   "ts": 1795569323
+  },
+  {
+   "text": "When straight UP yields only +0.1 for about 5 steps, try a diagonal or side branch such as UP+LEFT to find new facts, which are worth far more than plain walking.",
+   "step": 15,
+   "ts": 1795569323
+  },
+  {
+   "text": "When a nearby NPC, sign, door or object comes into view, detour to it and press A to trigger new text or facts instead of walking past.",
+   "step": 15,
+   "ts": 1795569323
+  },
+  {
+   "text": "When DOWN returns a stuck penalty (-0.5), do not use DOWN to back out; sidestep with LEFT or RIGHT, or continue on the upward diagonal that was earning reward.",
+   "step": 30,
+   "ts": 1795569368
+  },
+  {
+   "text": "After an UP+diagonal stretch goes flat for about 3 steps, flip the horizontal component (RIGHT+UP <-> LEFT+UP), since changing heading has coincided with new facts.",
+   "step": 30,
+   "ts": 1795569368
+  },
+  {
+   "text": "After a heading change back to straight UP earns a new fact, keep pushing that route into unexplored ground rather than retracing already-covered areas.",
+   "step": 30,
+   "ts": 1795569368
+  },
+  {
+   "text": "If the 'wait' action under a goto directive yields a stuck penalty once, stop waiting and immediately issue a movement or A press; repeated waits only stack -0.5 penalties.",
+   "step": 15,
+   "ts": 1795569907
+  },
+  {
+   "text": "Treat 'goto' as unreliable once it reports stuck with 'wait'; abandon it after one failure and switch to manual 'walk' moves, which earned steady positive reward.",
+   "step": 30,
+   "ts": 1795569939
+  },
+  {
+   "text": "If a goto toward RIGHT returns stuck, switch to walk UP+LEFT, which immediately earned a new fact after that failure.",
+   "step": 30,
+   "ts": 1795569939
+  },
+  {
+   "text": "Do not stay with a stuck goto for the occasional +0.5 fact; alternating learned and stuck turns nets a loss, so change target, direction or action type.",
+   "step": 30,
+   "ts": 1795569939
+  },
+  {
+   "text": "When stuck without movement, press A or B to clear a possible open dialog or menu, then test a short walk in each direction to find the open path.",
+   "step": 30,
+   "ts": 1795569939
+  },
+  {
+   "text": "During dialogue, keep pressing B through at least 6 zero-reward presses, since new text and a fact (+3) arrived after such a gap.",
+   "step": 15,
+   "ts": 1795570054
+  },
+  {
+   "text": "Stop alternating RIGHT and Y once it goes flat for 2 steps; after that pattern, switching to dialogue with B earned +3.",
+   "step": 15,
+   "ts": 1795570054
+  },
+  {
+   "text": "Do not rely on Y to interact, as it earned almost nothing; try A or B on the target instead.",
+   "step": 15,
+   "ts": 1795570054
+  },
+  {
+   "text": "If B in dialogue earns nothing for about 8 straight presses, try A once, then a short walk to check whether the text box has closed or a choice is waiting.",
+   "step": 15,
+   "ts": 1795570054
+  },
+  {
+   "text": "Treat a steady rhythm of new text about every 7 B presses as a live, progressing conversation, and stay in dialogue while that rhythm holds, even though most steps score zero.",
+   "step": 30,
+   "ts": 1795570079
+  },
+  {
+   "text": "In a long conversation, test A for a few presses and keep it only if new text arrives in fewer than the roughly 7 steps B has been taking.",
+   "step": 30,
+   "ts": 1795570079
+  },
+  {
+   "text": "While walk UP+LEFT keeps earning +0.1, keep issuing it and do not switch to goto; six walk steps gained 0.5, then nine stuck goto waits lost 4.5.",
+   "step": 15,
+   "ts": 1795604156
+  },
+  {
+   "text": "If a manual walk reports stuck just after changing direction, try that direction once more before abandoning it; a second walk RIGHT immediately earned a new fact (+1.1).",
+   "step": 15,
+   "ts": 1795604586
+  },
+  {
+   "text": "After about 6 flat +0.1 steps in one walk direction, bend to a diagonal, since switching from RIGHT to UP+RIGHT immediately earned a new fact.",
+   "step": 15,
+   "ts": 1795604586
+  },
+  {
+   "text": "If walking UP ends in a block and both RIGHT and LEFT report stuck, try DOWN+RIGHT next, since it broke free and earned a new fact (+1.1).",
+   "step": 30,
+   "ts": 1795604619
+  },
+  {
+   "text": "Also bend from a diagonal back to a straight direction after about 6 flat steps, since switching from UP+RIGHT to UP immediately earned a new fact (+1.1).",
+   "step": 30,
+   "ts": 1795604619
+  },
+  {
+   "text": "Avoid immediately reversing over ground just walked (DOWN, then UP, then back), since steps 29-40 mostly paced this way and earned only +0.1 each apart from one stuck penalty.",
+   "step": 45,
+   "ts": 1795604652
+  },
+  {
+   "text": "Stop alternating UP and Y in interact mode after 2-3 unrewarded steps; steps 55-60 earned almost nothing, so resume walking, where even flat steps earn +0.1.",
+   "step": 60,
+   "ts": 1795604684
+  },
+  {
+   "text": "After walking into something in a new area, tap toward it once, then use A to inspect; the first UP interaction earned +1.1, but repeating UP afterward earned nothing.",
+   "step": 60,
+   "ts": 1795604684
+  },
+  {
+   "text": "When a walk goes flat or reports stuck, also try a 90-degree turn; switching from DOWN to LEFT immediately earned a new fact (+1.1).",
+   "step": 60,
+   "ts": 1795604684
+  },
+  {
+   "text": "Do not use Y to inspect or advance in interact mode, since every Y press in steps 56-75 earned 0.0; use A for a single check instead.",
+   "step": 75,
+   "ts": 1795604709
+  },
+  {
+   "text": "Treat 4 consecutive 0.0 steps as a hard loop breaker that overrides any rhythm or interact directive: switch to walking LEFT, RIGHT or DOWN to leave the spot.",
+   "step": 75,
+   "ts": 1795604709
+  },
+  {
+   "text": "Change the directive itself from interact to walk when stuck: steps 71-90 repeated UP,Y for 20 steps at 0.0, forfeiting the +0.1 per step that even flat walking earns.",
+   "step": 90,
+   "ts": 1795604732
+  },
+  {
+   "text": "After about 6 flat walk steps, issue a goto toward a new side target, since goto LEFT at step 15 earned +2.1 (two facts), double the best walk steps.",
+   "step": 15,
+   "ts": 1795605306
+  },
+  {
+   "text": "Abandon a goto after 2 consecutive waits with -0.5 stuck; steps 24-29 waited six times for nothing, so switch to a manual walk direction immediately.",
+   "step": 30,
+   "ts": 1795605467
+  },
+  {
+   "text": "When new text appears and the next step reports stuck, assume a dialog box is open and press A to advance it instead of waiting, since steps 17-21 mostly lost -0.5 each after new text.",
+   "step": 30,
+   "ts": 1795605467
+  },
+  {
+   "text": "During a stalled goto, send a side direction instead of wait; LEFT at step 22 and RIGHT at step 30 each earned a new fact (+0.5) despite the stuck penalty.",
+   "step": 30,
+   "ts": 1795605467
+  },
+  {
+   "text": "When a goto approaches an object or character, press the direction straight into it; interact LEFT at step 8 earned +2.5 (new text and a fact) even while reporting stuck.",
+   "step": 15,
+   "ts": 1795605672
+  },
+  {
+   "text": "After an interaction pays out and the next press earns 0.0, walk away the opposite way at once; walking RIGHT at step 12, after three 0.0 steps, earned +2.0.",
+   "step": 15,
+   "ts": 1795605672
+  },
+  {
+   "text": "When interact presses go flat after a paying UP check, try one B press in dialogue mode; B at step 23 earned +2.0 with new text and a fact after three near-zero steps.",
+   "step": 30,
+   "ts": 1795605724
+  },
+  {
+   "text": "Stop pressing B after one 0.0 result and resume walking; steps 24-26 repeated B for nothing, forfeiting the +0.1 per step that flat walking earns.",
+   "step": 30,
+   "ts": 1795605724
+  },
+  {
+   "text": "Keep a goto running while each step still reports new text, even if flagged stuck or waiting; steps 35-37 earned +1.5 each, so apply the abandon-goto rule only once new text stops.",
+   "step": 45,
+   "ts": 1795605843
+  },
+  {
+   "text": "When a goto's new-text payouts shrink and it stays stuck, switch to interact with a direction press; DOWN at step 38 right after the goto earned +3.1.",
+   "step": 45,
+   "ts": 1795605843
+  },
+  {
+   "text": "Prefer a fresh direction or walking over Y during interact; Y at steps 39 and 41 earned only 0.1 and 0.0.",
+   "step": 45,
+   "ts": 1795605843
+  },
+  {
+   "text": "If the first B press scores 0.0 but logs a learned fact, press B exactly once more; step 42 did this and step 43 then earned +3.0.",
+   "step": 45,
+   "ts": 1795605843
+  },
+  {
+   "text": "Start a goto early when walking stays flat; goto at steps 33-34 earned +3.1 each, versus 0.1 per step for walking LEFT at steps 28-32.",
+   "step": 45,
+   "ts": 1795605843
+  },
+  {
+   "text": "In an active conversation, press B through two consecutive 0.0 steps, overriding the one-zero stop rule; steps 43-52 paid +2 to +4 on every third press.",
+   "step": 60,
+   "ts": 1795605905
+  },
+  {
+   "text": "After three consecutive 0.0 B presses, treat the dialogue as finished and walk or goto elsewhere; steps 53-60 spent eight turns on B and earned nothing.",
+   "step": 60,
+   "ts": 1795605905
+  },
+  {
+   "text": "Do not let one late payout restart a B streak; step 64 paid +2.0, then steps 65-75 spent eleven turns on B for nothing.",
+   "step": 75,
+   "ts": 1795605967
+  },
+  {
+   "text": "Before choosing dialogue/B, count recent 0.0 B steps; at three or more, issue a goto to a new target instead, even if the directive still says dialogue.",
+   "step": 75,
+   "ts": 1795605967
+  },
+  {
+   "text": "After three 0.0 B presses, never choose B on the next step: send a direction press or goto; steps 71-90 pressed B twenty times for only one +2.0.",
+   "step": 90,
+   "ts": 1795606031
+  },
+  {
+   "text": "If B keeps scoring 0.0 and the screen may still hold a box or menu, try A once, then a direction, to break out instead of repeating B (untested).",
+   "step": 90,
+   "ts": 1795606031
+  },
+  {
+   "text": "If dialogue/B persists for 20 steps and earns about +3 or less, treat the dialogue flag as stale and goto a new area; steps 86-105 earned only +1.0 at step 94 and +2.0 at step 100.",
+   "step": 105,
+   "ts": 1795606094
+  },
+  {
+   "text": "When a goto is unavailable or the directive stays dialogue after a 20-step B drought, send a different direction each step to move the character; steps 101-119 pressed B nineteen times for 0.0.",
+   "step": 120,
+   "ts": 1795606154
+  },
+  {
+   "text": "Treat any B lesson's exceptions as expired once ten straight steps score 0.0; do not press B again until a movement or goto step earns reward.",
+   "step": 120,
+   "ts": 1795606154
+  },
+  {
+   "text": "If a single DOWN after a long B streak scores 0.0, do not return to B; try LEFT, RIGHT, or UP next to find an exit (untested).",
+   "step": 120,
+   "ts": 1795606154
+  },
+  {
+   "text": "To escape a dead dialogue flag, walk in varied directions until reward returns, then goto; this worked at steps 122-129 (RIGHT first moved for reward at 125-127).",
+   "step": 135,
+   "ts": 1795606237
+  },
+  {
+   "text": "Prefer goto as soon as it is available after breaking free; steps 128-129 learned new facts at +1.1 each, versus +0.1 per walk step.",
+   "step": 135,
+   "ts": 1795606237
+  },
+  {
+   "text": "After three consecutive +0.1 walk steps in one direction, goto an unexplored person, object, or exit; steps 131-135 drifted LEFT for only +0.5 total.",
+   "step": 135,
+   "ts": 1795606237
+  },
+  {
+   "text": "When a step is marked stuck with negative reward, change direction or route around the obstacle; steps 123-124 lost 0.5 each.",
+   "step": 135,
+   "ts": 1795606237
+  },
+  {
+   "text": "Apply the three-step +0.1 limit to goto as well: pick a different target if no new reward arrives; steps 148-150 moved DOWN for only +0.3.",
+   "step": 150,
+   "ts": 1795606280
+  },
+  {
+   "text": "When a walk direction stalls, turn perpendicular early; switching LEFT to UP at step 137 immediately learned a new fact for +1.1.",
+   "step": 150,
+   "ts": 1795606280
+  },
+  {
+   "text": "Override the three-step limit for an advancing goto: allow about 7 steps of +0.1 travel, since steps 152-158 and 159-165 each ended in +3.1.",
+   "step": 165,
+   "ts": 1795606349
+  },
+  {
+   "text": "Keep the current goto after a single stuck step if the route then resumes; steps 147 and 154 each preceded a +3.1 within 4 steps.",
+   "step": 165,
+   "ts": 1795606349
+  },
+  {
+   "text": "Prioritize goto targets likely to show new text (unvisited people, signs, objects); steps 151, 158 and 165 earned +3.1 each, far above plain walking.",
+   "step": 165,
+   "ts": 1795606349
+  },
+  {
+   "text": "Keep exploring up and right in the current area while it yields new text; RIGHT/UP gotos produced all three +3.1 rewards in steps 146-165 (untested elsewhere).",
+   "step": 165,
+   "ts": 1795606349
+  },
+  {
+   "text": "Leave interact after the first 0.0 step and goto; steps 168-170 alternated Y and UP for nothing, then goto at 171 earned +2.0.",
+   "step": 180,
+   "ts": 1795606441
+  },
+  {
+   "text": "After a new-text reward, continue the goto once more before interacting; steps 165-166 earned +3.1 back to back.",
+   "step": 180,
+   "ts": 1795606441
+  },
+  {
+   "text": "While interacting beside a target, try each facing direction before leaving, even after one 0.0 step; at step 188 turning UP earned +2.0 after four weak steps (184-187).",
+   "step": 195,
+   "ts": 1795606519
+  },
+  {
+   "text": "After finishing an interaction, walk toward an unvisited exit; walking DOWN at step 191 found a new area for +1.5.",
+   "step": 195,
+   "ts": 1795606519
+  },
+  {
+   "text": "If the same direction sticks twice within three steps, abandon it and goto a visible exit or object; RIGHT lost 0.5 at both steps 192 and 194.",
+   "step": 195,
+   "ts": 1795606519
+  },
+  {
+   "text": "Default to goto over walk for exploring: walk steps 192-197 and 199-204 each netted -1.2, while gotos at 198 and 205 earned +1.1 and +2.5.",
+   "step": 210,
+   "ts": 1795606617
+  },
+  {
+   "text": "Keep advancing while each step shows new text, even if flagged stuck; goto/wait steps 217-219 earned +1.5 each.",
+   "step": 225,
+   "ts": 1795606769
+  },
+  {
+   "text": "After new text stops and two steps lose 0.5, stop waiting; steps 220-221 yielded nothing further.",
+   "step": 225,
+   "ts": 1795606769
+  },
+  {
+   "text": "If movement stays stuck after dialogue, try A or B to clear a possible open box before moving (untested); DOWN failed at steps 222-224.",
+   "step": 225,
+   "ts": 1795606769
+  },
+  {
+   "text": "Press START when dialogue stops yielding and see whether it opens new text; step 232 earned +3.0 after two silent B presses.",
+   "step": 240,
+   "ts": 1795606846
+  },
+  {
+   "text": "After one rewarding B press in dialogue, stop B after two 0.0 steps; steps 230-231 and 233-235 earned nothing.",
+   "step": 240,
+   "ts": 1795606846
+  },
+  {
+   "text": "When stuck going DOWN or at a failed interact, walk RIGHT to probe a new route; step 236 earned +2.0.",
+   "step": 240,
+   "ts": 1795606846
+  },
+  {
+   "text": "After a walk reward, change direction at the first stuck step; repeating RIGHT at steps 237-238 only lost reward.",
+   "step": 240,
+   "ts": 1795606846
+  },
+  {
+   "text": "Avoid repeating freeform B+LEFT+UP holds; steps 243-248 netted about -0.2, while switching to goto at 249-250 earned +2.1.",
+   "step": 255,
+   "ts": 1795606964
+  },
+  {
+   "text": "Retarget goto to a different exit or object once gains fall to 0.1; steps 251-253 barely paid and 254-255 stuck on RIGHT.",
+   "step": 255,
+   "ts": 1795606964
+  },
+  {
+   "text": "When stuck gotos are followed by a failed interact, face a new direction and press Y, then advance with B; steps 257-260 led to +6.0 across 260-266.",
+   "step": 270,
+   "ts": 1795607036
+  },
+  {
+   "text": "In a freshly opened dialogue, keep pressing B through up to two 0.0 steps while text remains unfinished; rewards recurred every third press at steps 260, 263 and 266.",
+   "step": 270,
+   "ts": 1795607036
+  },
+  {
+   "text": "In long cutscene-style dialogue, allow up to five 0.0 B presses before quitting; step 272 paid +2.0 after five silent ones (267-271).",
+   "step": 285,
+   "ts": 1795607133
+  },
+  {
+   "text": "If goto RIGHT and then walk LEFT both give no movement right after dialogue (steps 282-285), assume text is still open and resume B or B+START before moving again.",
+   "step": 285,
+   "ts": 1795607133
+  },
+  {
+   "text": "When a goto returns no-feedback with 0.0 just after dialogue, do not repeat it; steps 283-284 repeated RIGHT and lost 0.5 each.",
+   "step": 285,
+   "ts": 1795607133
+  }
+ ]
+}

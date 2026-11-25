@@ -1,0 +1,985 @@
+{
+ "game": "final-fantasyIII",
+ "facts": [
+  {
+   "text": "If B on a dialogue box yields no new text, try A next instead of pressing B again.",
+   "step": 15,
+   "ts": 1795622167
+  },
+  {
+   "text": "After 2-3 consecutive waits with no new text, press A to check whether the game is awaiting input.",
+   "step": 15,
+   "ts": 1795622167
+  },
+  {
+   "text": "Wait only while the screen is visibly auto-playing (cutscene, scrolling text, movement), in short stretches.",
+   "step": 15,
+   "ts": 1795622167
+  },
+  {
+   "text": "After waiting, as soon as a new text box appears and stays on screen, advance it with a button press.",
+   "step": 15,
+   "ts": 1795622167
+  },
+  {
+   "text": "If a wait-then-B cycle yields no reward, do not repeat it; press a D-pad direction to test whether you have control, and explore if the character moves.",
+   "step": 30,
+   "ts": 1795622269
+  },
+  {
+   "text": "If neither A nor D-pad changes the screen, try Start once (possible title or prompt screen) before returning to waiting.",
+   "step": 30,
+   "ts": 1795622269
+  },
+  {
+   "text": "During auto-playing intro text, favor short waits over B: waiting revealed new text twice while repeated B presses earned nothing.",
+   "step": 45,
+   "ts": 1795622389
+  },
+  {
+   "text": "If the first press of a direction or button changes nothing, switch inputs immediately instead of repeating it three times.",
+   "step": 60,
+   "ts": 1795622492
+  },
+  {
+   "text": "When UP and DOWN both do nothing, test LEFT and RIGHT before concluding you lack control.",
+   "step": 60,
+   "ts": 1795622492
+  },
+  {
+   "text": "Cap consecutive waits at three unless the screen is visibly changing, then actually press A, which a 20-step zero-reward stretch never tried.",
+   "step": 60,
+   "ts": 1795622492
+  },
+  {
+   "text": "Do not count a newly recorded fact as progress when reward stays zero; change approach until new text or a new area appears.",
+   "step": 60,
+   "ts": 1795622492
+  },
+  {
+   "text": "While waits keep revealing new text every 1-3 steps, keep waiting and do not interrupt with buttons; the 3-wait cap applies only after consecutive zero-reward waits.",
+   "step": 75,
+   "ts": 1795622616
+  },
+  {
+   "text": "When a dialogue B press earns new text but further B presses do not, return to short waits, since the following text may auto-advance.",
+   "step": 75,
+   "ts": 1795622616
+  },
+  {
+   "text": "Expect text in bursts of 2-3 separated by quiet gaps; after a burst ends, wait up to three steps, then press one button once to prompt the next burst.",
+   "step": 90,
+   "ts": 1795622737
+  },
+  {
+   "text": "While intro text is still appearing, skip D-pad control tests between bursts; wait instead, since LEFT and DOWN cost reward while three waits revealed new text.",
+   "step": 15,
+   "ts": 1795622895
+  },
+  {
+   "text": "After three zero-reward waits, press B once before trying other inputs: it revealed new text after a six-wait quiet gap.",
+   "step": 30,
+   "ts": 1795623020
+  },
+  {
+   "text": "After a no-feedback penalty, change input on the next step instead of starting another wait run; five further waits after one earned nothing.",
+   "step": 30,
+   "ts": 1795623020
+  },
+  {
+   "text": "If B and D-pad probes all fail during the intro, return to waiting for at least five steps, even after a penalty: new text appeared on the fifth straight wait after an 18-step dry stretch.",
+   "step": 45,
+   "ts": 1795623123
+  },
+  {
+   "text": "Treat five consecutive zero-reward waits as a hard limit, even mid-intro: twelve straight waits after one text reward earned nothing and led into a penalty.",
+   "step": 60,
+   "ts": 1795623282
+  },
+  {
+   "text": "When both long waits and B stay at zero, press A once, wait one step, then try START once if still silent, because neither button appeared in this 20-step dry stretch.",
+   "step": 60,
+   "ts": 1795623282
+  },
+  {
+   "text": "Override the three- and five-wait caps during auto-playing text: keep waiting through at least six quiet steps, since text arrived after gaps of 3-5 zero-reward waits without any button.",
+   "step": 75,
+   "ts": 1795623426
+  },
+  {
+   "text": "If one dialogue B press earns nothing, stop pressing B and switch to waiting; three straight B presses earned zero, while the waits that followed produced five text rewards.",
+   "step": 75,
+   "ts": 1795623426
+  },
+  {
+   "text": "During auto-playing intro text, wait at least eight steps before pressing anything, overriding lower wait caps: pure waiting earned text on the eighth step after the previous reward.",
+   "step": 15,
+   "ts": 1795623626
+  },
+  {
+   "text": "During auto-playing intro text, raise the no-button wait floor to at least 13 steps, overriding lower caps: text arrived by pure waiting after 12 straight zero-reward waits (#14-#25, paid #26).",
+   "step": 30,
+   "ts": 1795623766
+  },
+  {
+   "text": "During auto-playing intro text, wait at least 15 quiet steps before any button, overriding all lower caps: pure waiting paid at #41 after 14 zero-reward waits (#27-#40).",
+   "step": 45,
+   "ts": 1795623913
+  },
+  {
+   "text": "Once auto-playing text resumes, wait with no buttons: pure waiting earned 10 text rewards in steps #41-#59, with gaps of only 2-3 zero-reward steps.",
+   "step": 60,
+   "ts": 1795624057
+  },
+  {
+   "text": "After any new-text reward, reset the quiet counter to zero and expect more text within four waits; do not probe buttons during these short pauses.",
+   "step": 60,
+   "ts": 1795624057
+  },
+  {
+   "text": "If six waits stay silent and the screen allows movement, walk instead of waiting, overriding long wait floors: UP at #9 broke the dry stretch.",
+   "step": 15,
+   "ts": 1795624655
+  },
+  {
+   "text": "After two zero-reward steps walking one direction, turn: switching from UP to RIGHT at #12 earned +3 with new text and two facts.",
+   "step": 15,
+   "ts": 1795624655
+  },
+  {
+   "text": "When walking goes quiet for two steps, face any nearby person or object and press A once: A at #15 earned +3 with new text and two facts.",
+   "step": 15,
+   "ts": 1795624655
+  },
+  {
+   "text": "After six silent waits outside confirmed auto-playing text, press A, overriding long wait floors: waits #21-#26 earned nothing, then A at #27 earned +4.",
+   "step": 30,
+   "ts": 1795624770
+  },
+  {
+   "text": "While A is producing new text, keep pressing A until the first zero-reward press: #27 and #28 earned +4 and +2.",
+   "step": 30,
+   "ts": 1795624770
+  },
+  {
+   "text": "Right after an A press goes quiet, step RIGHT or another new direction instead of repeating A: RIGHT at #30 earned +2 with a new fact, while repeat A at #16-#17 earned nothing.",
+   "step": 30,
+   "ts": 1795624770
+  },
+  {
+   "text": "When dialogue A presses go quiet for two steps, wait with no buttons for two steps: after zeros at #34-#35, waits #36-#37 earned +1 and +2.",
+   "step": 45,
+   "ts": 1795624883
+  },
+  {
+   "text": "After text earned by waiting pauses for one step, try one A press: A at #39 earned +2 after the wait at #38 went quiet.",
+   "step": 45,
+   "ts": 1795624883
+  },
+  {
+   "text": "If a wait earns text right after A went quiet, keep waiting without trying A on one-step pauses: waits #51-#60 earned +1, +2, +2 with gaps of only 3-4 steps.",
+   "step": 60,
+   "ts": 1795625002
+  },
+  {
+   "text": "Treat the first -1 no-feedback while walking as a blocked path and drop that direction at once: DOWN at #116-#135 lost 7 points over 20 steps and earned nothing.",
+   "step": 135,
+   "ts": 1795628433
+  },
+  {
+   "text": "Never let a long walk directive hold one direction past three unrewarded steps; override it and rotate to LEFT, RIGHT or UP, since the every-third-step -1 keeps accumulating.",
+   "step": 135,
+   "ts": 1795628433
+  },
+  {
+   "text": "If walking draws repeated no-feedback penalties, stop walking: wait two steps to check for auto-playing text, then press A once before trying a different direction.",
+   "step": 135,
+   "ts": 1795628433
+  },
+  {
+   "text": "After one full rotation of walk directions earns nothing, stop cycling and wait or press A: #137-#150 tried five directions for zero reward.",
+   "step": 150,
+   "ts": 1795628539
+  },
+  {
+   "text": "Do not count a 'learned+1' with no-feedback and zero reward as progress: #137, #140, #143, #146 and #149 logged facts but opened no new text or area.",
+   "step": 150,
+   "ts": 1795628539
+  },
+  {
+   "text": "When exploring, walk single cardinal directions toward a visible exit, door or character instead of blind diagonals: UP+LEFT and UP+RIGHT at #137-#142 earned nothing.",
+   "step": 150,
+   "ts": 1795628539
+  },
+  {
+   "text": "Avoid walking in a RIGHT, UP, LEFT, DOWN loop that returns to the start; push farther into unexplored space, as the loop at #146-#160 earned nothing.",
+   "step": 165,
+   "ts": 1795628648
+  },
+  {
+   "text": "When both walking and A stay unrewarded, try B once to close a possible menu or prompt: A at #161-#163 broke nothing after the dry walk loop.",
+   "step": 165,
+   "ts": 1795628648
+  },
+  {
+   "text": "If B also yields nothing during a long dry streak, try START once to clear a possible title, pause or confirmation screen before resuming movement.",
+   "step": 165,
+   "ts": 1795628648
+  },
+  {
+   "text": "After about six quiet wait steps, press A again even if A went silent earlier: A at #176 earned +3 after the dry waits at #170-#175.",
+   "step": 180,
+   "ts": 1795628768
+  },
+  {
+   "text": "If A, walking and waiting stall, try DOWN, UP, A, A in one sequence to pass a possible choice prompt: it opened new text at #180 (+2).",
+   "step": 180,
+   "ts": 1795628768
+  },
+  {
+   "text": "When a DOWN, UP, A sequence draws no feedback, add a second A before giving up: #179 lost 1 point but #180 with the extra A earned +2.",
+   "step": 180,
+   "ts": 1795628768
+  },
+  {
+   "text": "While a direction-plus-A combo keeps opening new text, repeat it unchanged: LEFT, UP, A earned +2 on each of #185-#187.",
+   "step": 195,
+   "ts": 1795628922
+  },
+  {
+   "text": "After two zero-reward single A presses, switch to a direction-plus-A combo: A stalled at #183-#184, then LEFT, UP, A earned +2 at #185.",
+   "step": 195,
+   "ts": 1795628922
+  },
+  {
+   "text": "When text is advancing, send A twice or three times per step: A+A+A and A+A earned +2 at #190-#191, while the single A at #192 earned nothing.",
+   "step": 195,
+   "ts": 1795628922
+  },
+  {
+   "text": "Never press B alone twice in a row: #193-#194 netted -1, while B, RIGHT, A, LEFT immediately opened new text at #195 (+2).",
+   "step": 195,
+   "ts": 1795628922
+  },
+  {
+   "text": "When A presses go quiet during a story scene, switch to wait: A at #196-#198 netted -1, while waits at #199-#206 earned +12.",
+   "step": 210,
+   "ts": 1795629086
+  },
+  {
+   "text": "Keep waiting while text arrives on its own, tolerating one or two zero steps between lines: #202 and #205 were blank, yet new text followed each.",
+   "step": 210,
+   "ts": 1795629086
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Intro scene: narration text without a box over a dark town with blue roofs, two people, steam and barrels.   NOT interactable (scenery): Brown-haired person, red/white outfit (DO -> pressed A",
+   "step": 6,
+   "ts": 1795630558
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Dark cutscene: narration text fades over a night view of multi-level metal structures and starry sky. No dialogue box.   NOT interactable (scenery): Metal building with walkway ( -> pressed START",
+   "step": 6,
+   "ts": 1795630565
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Blank screen: the whole image is a uniform very dark navy/charcoal color. No characters, menus or text visible.   exits/paths: None visible. -> pressed A",
+   "step": 1,
+   "ts": 1795631508
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Intro cutscene: narration text over a darkened view of cliffs, with a pale patch at lower left. No dialogue box.   NOT interactable (scenery): Dark rocky cliffs (HERE); Pale snow -> pressed A",
+   "step": 1,
+   "ts": 1795631518
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Intro cutscene: narration text over a view of a tall dark cliff with snowy rocks at lower left. No dialogue box.   NOT interactable (scenery): Cliff face (HERE); Snowy rocky peak -> pressed START",
+   "step": 1,
+   "ts": 1795631522
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Intro cutscene: narration text over a snowy cliff scene with a wooden bridge. No dialogue box or visible characters.   NOT interactable (scenery): Wooden bridge (HERE); Rocky cli -> pressed START",
+   "step": 1,
+   "ts": 1795631531
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Intro cutscene: narration text over a view of a snowy cliff with a wooden fence structure and a dark chasm.   NOT interactable (scenery): Wooden fence/scaffold structure (UP); Ro -> pressed Y",
+   "step": 1,
+   "ts": 1795631536
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Three riders in armored walkers stand on a snowy cliff path at night. No dialogue box or menu is visible.   NOT interactable (scenery): Green-haired rider in armored walker (HERE -> pressed START",
+   "step": 1,
+   "ts": 1795631753
+  },
+  {
+   "text": "Human coach said: You are NOT in the game yet - this is the TITLE / attract-demo screen looping. Press START now to open the menu, then press A to begin a New Game. Do not just wait.",
+   "step": 1,
+   "ts": 1795631753
+  },
+  {
+   "text": "Human coach said: press start",
+   "step": 2,
+   "ts": 1795631776
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Dialogue box open over a snowy cliff path; two armored riders and a green-haired rider stand mid-screen.   INTERACTABLE: Dialogue box [other] to the UP \u2014 Text ends at 'fol'; no a -> pressed A",
+   "step": 8,
+   "ts": 1795631832
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Snowy field under a starry night sky with falling snow; three dark mechanical armored walkers seen from behind. No text box.   NOT interactable (scenery): Armored walker (front/b -> pressed START",
+   "step": 8,
+   "ts": 1795631876
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Three armored mechs seen from behind on a snowy field under a starry night sky; pseudo-3D view, no dialogue box.   NOT interactable (scenery): Armored mech (front/bottom) (HERE); -> pressed START",
+   "step": 8,
+   "ts": 1795631882
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Dialogue box from WEDGE over a dark town scene with three figures riding mechanical armor on a path with metal grates.   NOT interactable (scenery): Brown-capped rider in mech ar -> pressed START",
+   "step": 8,
+   "ts": 1795631916
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Night-time town street; the player (an armored walker suit with rider) stands on a path below a large arched gateway.   INTERACTABLE: Arched gateway [exit] to the UP \u2014 Dark arch  -> pressed X",
+   "step": 8,
+   "ts": 1795631929
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Menu screen with 'Order' header and party list: WEDGE, VICKS, ?????. A hand cursor points at ?????'s portrait.   INTERACTABLE: WEDGE (party slot 1) [other] to the UP \u2014 LV 1, HP 6 -> pressed A",
+   "step": 8,
+   "ts": 1795631940
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Town scene: player in Magitek armor faces two guards to the north; dialogue box open, text still appearing.   INTERACTABLE: Guard (left) [npc] to the UP; Guard (right) [npc] to t -> pressed A",
+   "step": 8,
+   "ts": 1795631960
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle screen in a snowy town street. Vicks' turn (name yellow); menu open with hand cursor on MagiTek. Two enemies on the left.   INTERACTABLE: Armored enemy (upper) [enemy] to  -> pressed A",
+   "step": 8,
+   "ts": 1795631978
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle screen in a snowy town street. Command menu open (cursor on MagiTek); marker over the rightmost, lowest rider.   INTERACTABLE: Active rider in Magitek armor [player] to th -> pressed A",
+   "step": 8,
+   "ts": 1795631994
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle screen in a snowy town: victory message 'Got 32 Exp. point(s)' shown; three party members in mechs stand at right.   INTERACTABLE: Victory message box [other] to the UP \u2014  -> pressed A",
+   "step": 8,
+   "ts": 1795632014
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle screen over a town street; message box says WEDGE gained a level. Three armored mechs with riders on the right.   INTERACTABLE: Level-up message box [other] to the UP \u2014 Ba -> pressed A",
+   "step": 8,
+   "ts": 1795632025
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Town rooftop scene with chimney steam; a dialogue box shows a GUARD speaking. Armored mech rider at center on a walkway.   NOT interactable (scenery): Pale-haired figures (two) ( -> pressed A",
+   "step": 8,
+   "ts": 1795632051
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Turn-based battle on a snowy town street: three party members in mechs (right) face two wolves (left). Command menu is open.   INTERACTABLE: VICKS (mech rider, active) [player] t -> pressed A",
+   "step": 8,
+   "ts": 1795632103
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle: attack menu open, cursor on Fire Beam. Two wolves on left; three armored-walker riders on right.   INTERACTABLE: Wolf (upper) [enemy] to the LEFT \u2014 Grey wolf, upper left  -> pressed A",
+   "step": 8,
+   "ts": 1795632114
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Turn-based battle: 'Fire Beam' banner; a wolf faces three riders in mechs. Command menu open, hand cursor on MagiTek.   INTERACTABLE: Green-haired rider in mech [player] to the H -> pressed A",
+   "step": 8,
+   "ts": 1795632127
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle screen with victory message 'Got 24 Exp. point(s)'. Three party riders in mech armor on the right; no enemies visible.   INTERACTABLE: Victory message box [other] to the U -> pressed A",
+   "step": 8,
+   "ts": 1795632141
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle on snowy town street. ????? (rightmost, marker above) has command menu open; cursor on MagiTek. Two enemies at left.   INTERACTABLE: Large gray humanoid enemy [enemy] to t -> pressed A",
+   "step": 8,
+   "ts": 1795632163
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle: 3 riders in mech armor (right) face 2 armored soldiers (left). Beam skill menu is open at the bottom.   INTERACTABLE: Armored soldier (upper) [enemy] to the LEFT \u2014 White  -> pressed A",
+   "step": 8,
+   "ts": 1795632172
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle victory screen: message box reads experience gained; party in armored walkers on the right, snowy town backdrop.   INTERACTABLE: Victory message box [other] to the UP \u2014 Sh -> pressed A",
+   "step": 8,
+   "ts": 1795632205
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Dialogue box open with a GUARD line over a town scene; figures on a narrow walkway, one large armored figure at top center.   NOT interactable (scenery): Armored figure with brow -> pressed A",
+   "step": 8,
+   "ts": 1795632221
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle screen in a snowy town: three armored walker riders face a wolf and two armed soldiers. Command menu open, cursor on MagiTek.   INTERACTABLE: Armed soldier with shield (le -> pressed A",
+   "step": 8,
+   "ts": 1795632287
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle in a town street. Skill menu open; hand cursor points at Bolt Beam. White marker above the top party unit.   INTERACTABLE: Armored soldier (left) [enemy] to the LEFT \u2014 Hol -> pressed A",
+   "step": 8,
+   "ts": 1795632299
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Turn-based battle in a snowy town street: three mech-riding party members face one wolf; command menu open, VICKS highlighted.   INTERACTABLE: Wolf [enemy] to the UP-RIGHT \u2014 Larg -> pressed A",
+   "step": 8,
+   "ts": 1795632324
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle screen on a snowy town street: three mounted mechs in a column, command menu open for the party (MagiTek / Item).   INTERACTABLE: Mech rider (top of column) [player] to th -> pressed A",
+   "step": 8,
+   "ts": 1795632335
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle victory screen on a town stone street: message box shows EXP gained; three armored mech riders stand mid-screen.   INTERACTABLE: Victory message box [other] to the UP \u2014 To -> pressed A",
+   "step": 8,
+   "ts": 1795632341
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle screen with a reward banner 'Got Tonic \u00d7 1'. Three armored mech riders stand mid-field; no enemies visible.   INTERACTABLE: Reward message box [other] to the UP \u2014 Banner a -> pressed A",
+   "step": 8,
+   "ts": 1795632346
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Snowy, dark town with blue roofs. Player sprite stands mid-screen on a narrow north-south street. No dialogue or menu.   INTERACTABLE: Door in upper-right building [door] to the  -> pressed X",
+   "step": 8,
+   "ts": 1795632360
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Item menu open; hand cursor points at 'Tonic' (quantity 1). Description box reads 'Recovers 50 HP'.   INTERACTABLE: Tonic : 1 [item] to the HERE \u2014 Only item listed; highlighted b -> pressed A",
+   "step": 8,
+   "ts": 1795632365
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Item menu screen: header options USE, ARRANGE, RARE; item list is empty; hand cursor at left of the list.   NOT interactable (scenery): Hand cursor (UNKNOWN); Empty item list pan -> pressed B",
+   "step": 8,
+   "ts": 1795632372
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Snowy town with rooftops and cliffs; a figure in mechanical armor stands at center. Dialogue box at top shows a GUARD line.   NOT interactable (scenery): Figure riding mechanical -> pressed A",
+   "step": 8,
+   "ts": 1795632409
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle scene on a town street: two Vomammoths and two Guards on the left face the party on the right.   INTERACTABLE: Vomammoth (upper) [enemy] to the LEFT \u2014 Shaggy tusked beast, -> pressed A",
+   "step": 8,
+   "ts": 1795632420
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Turn-based battle: VICKS's command menu is open, cursor on MagiTek. Four enemies on the left, three mounted party members on the right.   INTERACTABLE: Active party member in mec -> pressed A",
+   "step": 8,
+   "ts": 1795632433
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle in a snowy town street: two armored soldiers and a shaggy tusked beast vs. party in mechs. Command menu open for VICKS.   INTERACTABLE: Shaggy tusked beast [enemy] to the  -> pressed A",
+   "step": 8,
+   "ts": 1795632474
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Turn-based battle on a snowy town street; WEDGE's command menu is open with cursor on MagiTek.   INTERACTABLE: Armored soldier (upper left) [enemy] to the UP-LEFT \u2014 Large armored -> pressed A",
+   "step": 8,
+   "ts": 1795632494
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle on a town street. Skill list open; hand cursor appears by the upper-left armored enemy. Triangle marks top party unit.   INTERACTABLE: Armored soldier (upper) [enemy] to t -> pressed A",
+   "step": 8,
+   "ts": 1795632504
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle on a snowy town street. Vicks's command menu is open, cursor on MagiTek. Two enemies at left, party at right.   INTERACTABLE: Furry tusked beast [enemy] to the LEFT \u2014 Larg -> pressed A",
+   "step": 8,
+   "ts": 1795632522
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle screen: one enemy on left, party in armored mechs on right. WEDGE's command menu is open, hand cursor on MagiTek.   INTERACTABLE: Armored humanoid foe with weapon [enemy]  -> pressed A",
+   "step": 8,
+   "ts": 1795632541
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle screen with message box 'Got 98 Exp. point(s)'. Three armored mechs with riders on the right; no enemies visible.   INTERACTABLE: Battle result message box [other] to the  -> pressed A",
+   "step": 8,
+   "ts": 1795632565
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle results screen: message box reads 'Got 276 GP' over a snowy town battle background, party status shown below.   INTERACTABLE: Reward message box [other] to the UP \u2014 Shows  -> pressed B",
+   "step": 8,
+   "ts": 1795632570
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Dialogue box open at top (WEDGE speaking). Three armored mounted figures stand in a snowy, rocky area with wooden structures.   INTERACTABLE: Soldier in walker armor (left) [npc] -> pressed A",
+   "step": 8,
+   "ts": 1795632601
+  },
+  {
+   "text": "Human coach said: The game has ALREADY STARTED - you are now in the opening Magitek march scene, NOT the title screen. STOP pressing START. From now on press A to advance dialogue/message boxes and to act. Ignore the earlier START instruction.",
+   "step": 8,
+   "ts": 1795632616
+  },
+  {
+   "text": "During opening cutscene text, choose wait first, since waiting repeatedly revealed new text without extra button presses.",
+   "step": 12,
+   "ts": 1795632663
+  },
+  {
+   "text": "After an A press shows new dialogue, wait briefly for the text to finish or change before pressing A again, as rapid repeat A presses mostly scored zero.",
+   "step": 12,
+   "ts": 1795632663
+  },
+  {
+   "text": "If two consecutive A presses yield nothing new, switch to wait and re-check the screen instead of continuing to mash A.",
+   "step": 12,
+   "ts": 1795632663
+  },
+  {
+   "text": "Do not repeat B after it produces no new text; use B only to cancel a menu, and otherwise wait or press A.",
+   "step": 12,
+   "ts": 1795632663
+  },
+  {
+   "text": "Re-observe after one press and change plan if nothing changed, because the second and third repeats of A, B, DOWN or START mostly scored zero.",
+   "step": 27,
+   "ts": 1795632781
+  },
+  {
+   "text": "Never press START during the march cutscene or dialogue; it gave no feedback and negative reward.",
+   "step": 27,
+   "ts": 1795632781
+  },
+  {
+   "text": "Don't treat new text after B or DOWN as proof they advance the cutscene; test waiting, since the text may be scrolling on its own.",
+   "step": 27,
+   "ts": 1795632781
+  },
+  {
+   "text": "When a battle command menu is open, stop waiting: press A to pick the highlighted attack, then A again to confirm the target.",
+   "step": 27,
+   "ts": 1795632781
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Turn-based battle in a dark cave: three creature enemies on the left, armored party on the right, bottom window shows only a hand cursor.   INTERACTABLE: Creature enemy (upper le -> pressed START",
+   "step": 31,
+   "ts": 1795632825
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle in a cave: 3 rat-like enemies on left, mech-riding party on right. Beam menu open, cursor on Fire Beam.   INTERACTABLE: Rat-like enemy (upper middle) [enemy] to the LEFT;  -> pressed A",
+   "step": 31,
+   "ts": 1795632835
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle screen: one creature on the left, party in walker armor on the right. Command menu open, hand cursor on MagiTek; VICKS highlighted.   INTERACTABLE: Creature (pale body, re -> pressed A",
+   "step": 31,
+   "ts": 1795632873
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle victory screen in a cave: a message box reports Exp. gained; party sprites stand on the right. No enemies visible.   NOT interactable (scenery): Party member (upper armore -> pressed A",
+   "step": 31,
+   "ts": 1795633026
+  },
+  {
+   "text": "If one walk step changes nothing, check for an open text box or lack of control; if free to move, turn toward a visible exit or NPC instead of pushing RIGHT again.",
+   "step": 41,
+   "ts": 1795633121
+  },
+  {
+   "text": "When a new text box appears, even right after walking, press A once promptly, since first A presses on fresh dialogue earned the top reward (+3).",
+   "step": 41,
+   "ts": 1795633121
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Dark mine cave: party character stands on a cave floor, with rail tracks to the right and a flame above.   NOT interactable (scenery): Player character (brown hat) (HERE); Blue/w -> pressed START",
+   "step": 50,
+   "ts": 1795633199
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Save menu with three slots: first holds WEDGE data (LV 4), other two Empty. Cursor points at the first slot.   INTERACTABLE: Cursor on WEDGE save slot [other] to the LEFT \u2014 Point -> pressed B",
+   "step": 50,
+   "ts": 1795633215
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Main menu (subscreen) open; hand cursor on 'Item'. Party: WEDGE, VICKS, and ????? shown as Wounded with 0 HP.   INTERACTABLE: Hand cursor on Item [other] to the UP-RIGHT \u2014 Menu s -> pressed B",
+   "step": 50,
+   "ts": 1795633222
+  },
+  {
+   "text": "Human coach said: go right and then up on the path",
+   "step": 8,
+   "ts": 1795633423
+  },
+  {
+   "text": "Avoid pressing X during freeform play unless a prompt calls for it, since repeated X presses earned nothing.",
+   "step": 15,
+   "ts": 1795633483
+  },
+  {
+   "text": "After two B presses in a row with no new text or visible change, stop pressing B and resume exploring.",
+   "step": 15,
+   "ts": 1795633483
+  },
+  {
+   "text": "When UP is blocked on the coached right-then-up route, shift farther along the path before retrying UP instead of holding it.",
+   "step": 15,
+   "ts": 1795633483
+  },
+  {
+   "text": "When a straight walk stalls, try a diagonal such as DOWN+RIGHT to slide around walls, and change course if the next step shows no progress.",
+   "step": 15,
+   "ts": 1795633483
+  },
+  {
+   "text": "Human coach said: there is no diagonal pathing in this game. only up, down, left and right",
+   "step": 18,
+   "ts": 1795633517
+  },
+  {
+   "text": "Human coach said: walk up",
+   "step": 19,
+   "ts": 1795633534
+  },
+  {
+   "text": "Human coach said: keep walking",
+   "step": 20,
+   "ts": 1795633555
+  },
+  {
+   "text": "Human coach said: stop",
+   "step": 24,
+   "ts": 1795633589
+  },
+  {
+   "text": "Human coach said: go back up",
+   "step": 24,
+   "ts": 1795633589
+  },
+  {
+   "text": "Human coach said: keep going up until you are stopped by a wall",
+   "step": 25,
+   "ts": 1795633605
+  },
+  {
+   "text": "Human coach said: tehn go right",
+   "step": 26,
+   "ts": 1795633621
+  },
+  {
+   "text": "Human coach said: now you are in a fight scene",
+   "step": 26,
+   "ts": 1795633621
+  },
+  {
+   "text": "Ignore the earlier diagonal-walking advice; get around walls with single LEFT or RIGHT moves, then retry UP.",
+   "step": 30,
+   "ts": 1795633677
+  },
+  {
+   "text": "When a walk step returns no-feedback or UP stalls, switch to a different cardinal direction instead of repeating it for more steps.",
+   "step": 30,
+   "ts": 1795633677
+  },
+  {
+   "text": "When dialogue or battle text is on screen, press A to advance it, and wait only if the screen is still changing.",
+   "step": 30,
+   "ts": 1795633677
+  },
+  {
+   "text": "In a fight scene, stop walking and use A to confirm battle commands and targets as menus appear.",
+   "step": 30,
+   "ts": 1795633677
+  },
+  {
+   "text": "Follow only the newest coach instruction when older ones such as walk, stop, or go back conflict with it.",
+   "step": 30,
+   "ts": 1795633677
+  },
+  {
+   "text": "Human coach said: white triangle above your party member's head means it your turn. dont wait. make a decision and execute it",
+   "step": 31,
+   "ts": 1795633708
+  },
+  {
+   "text": "Human coach said: you only have to push A button once.. dont mash it",
+   "step": 38,
+   "ts": 1795633779
+  },
+  {
+   "text": "After an A press yields no new text or change, wait one step and recheck the screen before pressing A again.",
+   "step": 45,
+   "ts": 1795633856
+  },
+  {
+   "text": "In a fight with no white triangle and no prompt awaiting input, wait for new battle text, since waits captured some of the highest rewards.",
+   "step": 45,
+   "ts": 1795633856
+  },
+  {
+   "text": "After two or three waits in a row with no new text, stop waiting and look for a command menu to act on, or test one directional step to see whether the fight has ended.",
+   "step": 60,
+   "ts": 1795633979
+  },
+  {
+   "text": "When the dialogue directive repeats A with no reward, check whether a menu needs a cursor move or the box has closed, then act on that instead of pressing A again.",
+   "step": 60,
+   "ts": 1795633979
+  },
+  {
+   "text": "Human coach said: go left. stop at wooden path. then go up",
+   "step": 64,
+   "ts": 1795634001
+  },
+  {
+   "text": "When a coach route names a landmark such as the wooden path, walk toward it until it is reached, then make the named turn at once.",
+   "step": 74,
+   "ts": 1795634083
+  },
+  {
+   "text": "When LEFT, RIGHT, or UP earns +1 after a blocked step, take a few more steps to explore the opening, then retry UP.",
+   "step": 74,
+   "ts": 1795634083
+  },
+  {
+   "text": "Avoid bouncing between RIGHT and LEFT along the same stretch; after a no-feedback side step, probe UP before reversing direction.",
+   "step": 74,
+   "ts": 1795634083
+  },
+  {
+   "text": "When walking triggers new text, switch to a single A press to read it, then resume the coached route as soon as the box closes.",
+   "step": 74,
+   "ts": 1795634083
+  },
+  {
+   "text": "Human coach said: go up through the tunnel",
+   "step": 76,
+   "ts": 1795634097
+  },
+  {
+   "text": "Human coach said: 2 steps to the right, then go up",
+   "step": 86,
+   "ts": 1795634160
+  },
+  {
+   "text": "Press one cardinal direction at a time while exploring, since diagonals like UP+RIGHT and DOWN+LEFT hide which way is blocked.",
+   "step": 89,
+   "ts": 1795634198
+  },
+  {
+   "text": "When a coach gives a step count, take exactly that many steps and make the named turn immediately, with no extra steps.",
+   "step": 89,
+   "ts": 1795634198
+  },
+  {
+   "text": "Compare the screen after each walk step, and if your character has not moved, change direction instead of repeating the same three-step press.",
+   "step": 89,
+   "ts": 1795634198
+  },
+  {
+   "text": "Do not undo an opening that just earned +1 by heading DOWN or back the opposite way before probing farther along it and upward.",
+   "step": 89,
+   "ts": 1795634198
+  },
+  {
+   "text": "Human coach said: take 2 steps to the right. then stop",
+   "step": 100,
+   "ts": 1795634271
+  },
+  {
+   "text": "Human coach said: now walk up and dont stop unless something stops you",
+   "step": 104,
+   "ts": 1795634302
+  },
+  {
+   "text": "After two walk steps in a row with r=0 and no new text, switch direction, since reward usually arrives only on the first step into new ground.",
+   "step": 104,
+   "ts": 1795634315
+  },
+  {
+   "text": "Limit waiting to one or two turns after new text appears; if the next wait earns nothing, resume walking the coached route.",
+   "step": 104,
+   "ts": 1795634315
+  },
+  {
+   "text": "After a coach-ordered stop or a finished step count, probe the next unexplored direction, preferring UP, instead of idling on repeated waits.",
+   "step": 104,
+   "ts": 1795634315
+  },
+  {
+   "text": "After a step into new ground, try one A press facing any nearby person or object, since this has revealed new text worth reward.",
+   "step": 119,
+   "ts": 1795634395
+  },
+  {
+   "text": "If UP returns a penalty with no feedback, stop pressing UP from that tile and sidestep LEFT or RIGHT before trying UP again.",
+   "step": 119,
+   "ts": 1795634395
+  },
+  {
+   "text": "In a scripted scene where text advances by itself, keep waiting through up to three r=0 turns before walking, overriding the shorter wait limit, since new text arrived after such gaps.",
+   "step": 134,
+   "ts": 1795634486
+  },
+  {
+   "text": "After a dialogue A press earns reward, try at most one more A; if it earns 0, stop pressing A and wait or move, as repeated A presses added nothing.",
+   "step": 134,
+   "ts": 1795634486
+  },
+  {
+   "text": "While scripted dialogue is active, stay put and mix waits with A presses instead of walking, since new text kept paying reward with no movement.",
+   "step": 149,
+   "ts": 1795634592
+  },
+  {
+   "text": "When two A presses in a row earn 0 during a conversation, switch to wait for a turn or two, because waiting after A presses has surfaced the next line.",
+   "step": 149,
+   "ts": 1795634592
+  },
+  {
+   "text": "Once repeated waits and A presses in freeform earn 0 for about four turns with no new text, treat the scene as over and walk in an unexplored direction, preferring UP.",
+   "step": 164,
+   "ts": 1795634729
+  },
+  {
+   "text": "Do not press B to advance or probe when stalled, since it earned nothing; walk instead.",
+   "step": 164,
+   "ts": 1795634729
+  },
+  {
+   "text": "Treat a -1 no-feedback result on an A press as a sign nothing is responding there, and change action rather than pressing A again.",
+   "step": 164,
+   "ts": 1795634729
+  },
+  {
+   "text": "Human coach said: remember, Vicks said dont attack the shell!",
+   "step": 165,
+   "ts": 1795634729
+  },
+  {
+   "text": "Human coach said: you need to heal",
+   "step": 168,
+   "ts": 1795634768
+  },
+  {
+   "text": "Break any repeating A, A, DOWN, B, B, B cycle immediately, since several rounds earned nothing; back fully out of the menu or switch to a different goal.",
+   "step": 179,
+   "ts": 1795634901
+  },
+  {
+   "text": "When healing, confirm from on-screen text which command, item, and target the cursor is on before each A, and move the cursor deliberately instead of pressing A or B blindly.",
+   "step": 179,
+   "ts": 1795634901
+  },
+  {
+   "text": "After healing succeeds or fails to respond twice, close the menu and resume the coached objective rather than retrying the same inputs.",
+   "step": 179,
+   "ts": 1795634901
+  },
+  {
+   "text": "Do not count learned+1 as progress; if the reward stays 0, change approach even when a new control fact was recorded.",
+   "step": 179,
+   "ts": 1795634901
+  },
+  {
+   "text": "While consecutive freeform A presses each reveal new text, keep pressing A one at a time, and stop at the first 0 reward.",
+   "step": 194,
+   "ts": 1795635023
+  },
+  {
+   "text": "After stalled dialogue A presses, one B or wait is a fair single probe, as new text followed B and wait here; this relaxes the no-B rule, but stop B once it earns 0.",
+   "step": 194,
+   "ts": 1795635023
+  },
+  {
+   "text": "Avoid chaining blind inputs such as DOWN+DOWN+A after new text; press one button and read the result first.",
+   "step": 194,
+   "ts": 1795635023
+  },
+  {
+   "text": "If walking DOWN returns -1 no-feedback, do not repeat it; check for an open textbox or menu, then try another direction.",
+   "step": 194,
+   "ts": 1795635023
+  },
+  {
+   "text": "Human coach said: you just chose fire beam after you said you were going to use heal force",
+   "step": 195,
+   "ts": 1795635043
+  },
+  {
+   "text": "Cap waiting at two consecutive 0-reward waits, then press A once or walk, since long wait streaks earned nothing.",
+   "step": 209,
+   "ts": 1795635144
+  },
+  {
+   "text": "When one dialogue A earns 0, switch to a single wait instead of pressing A again, as the wait after stalled presses revealed new text.",
+   "step": 209,
+   "ts": 1795635144
+  },
+  {
+   "text": "In the Magitek menu, never double-tap A, since the default pick can be Fire Beam; move to Heal Force and see it highlighted before confirming.",
+   "step": 209,
+   "ts": 1795635144
+  },
+  {
+   "text": "Check after one walk press that the character moved; if it returns 0 with no-feedback, do not send that direction twice more.",
+   "step": 224,
+   "ts": 1795635222
+  },
+  {
+   "text": "If RIGHT, LEFT, and DOWN probes all earn 0, stop sweeping directions and check the screen for a textbox, menu, battle, or scripted scene that is blocking movement.",
+   "step": 224,
+   "ts": 1795635222
+  },
+  {
+   "text": "Before walking, name a visible destination such as an exit, path, or character and head toward it, since undirected direction probes earned no reward.",
+   "step": 224,
+   "ts": 1795635222
+  },
+  {
+   "text": "Human coach said: stay on the pth and keep going up",
+   "step": 232,
+   "ts": 1795635288
+  },
+  {
+   "text": "After a freeform wait reveals new text, read that text and respond with one A press before resuming any walking.",
+   "step": 239,
+   "ts": 1795635348
+  },
+  {
+   "text": "Follow the coach's upward path with single UP presses first, since UP earned the only recent walking reward.",
+   "step": 239,
+   "ts": 1795635348
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle in a cave: three creatures on the left face the party on the right. Command menu open, cursor on MagiTek.   INTERACTABLE: Rat-like creature (upper middle) [enemy] to the L -> pressed A",
+   "step": 245,
+   "ts": 1795635400
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle screen: three creatures at left face three armored riders at right. Command menu open, cursor on MagiTek; VICKS highlighted.   INTERACTABLE: Active rider (white triangle m -> pressed A",
+   "step": 245,
+   "ts": 1795635410
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle in a cave. WEDGE's command menu is open, hand cursor on MagiTek. One enemy at left; party in armored mounts at right.   INTERACTABLE: Enemy creature (red-topped beast) [en -> pressed A",
+   "step": 245,
+   "ts": 1795635445
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle screen in a cave: victory message \"Got 31 Exp. point(s)\" shown above party status window.   INTERACTABLE: Victory message box [other] to the UP \u2014 Top box reading experienc -> pressed A",
+   "step": 245,
+   "ts": 1795635475
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Cave scene with an open dialogue box from VICKS; a green-haired rider in a mech suit and another armored machine stand on the path.   INTERACTABLE: Brown armored mech [npc] to th -> pressed A",
+   "step": 245,
+   "ts": 1795635513
+  }
+ ]
+}

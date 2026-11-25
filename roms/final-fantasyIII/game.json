@@ -1,0 +1,12 @@
+{
+  "name": "Final Fantasy III (USA) / Final Fantasy VI",
+  "rom": "Final Fantasy III (USA) (Rev 1).sfc",
+  "ram_reader": "ff6",
+  "controls": { "interact": "A", "advance": "A", "cancel": "B", "menu": "X" },
+  "state": "saves/world.state",
+  "warmup": 5400,
+  "planner_model": "sonnet",
+  "executor_model": "haiku",
+  "scout_model": "sonnet",
+  "goal": "You are playing Final Fantasy III (SNES, USA release — Final Fantasy VI in Japan); you are controlling the party. The GAME CONTROLS above are the AUTHORITATIVE source for which button does what — follow them, and do not guess a button. Note the two modes: TRAVELING (walk the field/towns/dungeons and navigate menus) and FIGHTING (turn-based battles) use the same buttons for different things. While traveling: move with the Control Pad; press A to talk to people, open treasure chests, push switches and confirm menu choices; press B to cancel; press X to open the menu (subscreen). In battle: when a fighter's gauge fills, pick a command (Fight / Skill / Magic / Item) with the Control Pad and confirm with A, then choose a target with the Control Pad + A; hold L+R together to try to run. CUTSCENES vs DIALOGUE: if the scene is playing by itself (characters walking on their own, text scrolling or fading in without a box, the view panning), press NOTHING and wait — do not mash buttons during a cutscene. But when a dialogue/message box is open and the picture is sitting still waiting for you (often with a small blinking arrow), press A to advance it; keep pressing A to step through a conversation. In short: send input only when something is clearly waiting for your input. Play to make progress: explore, talk to NPCs, advance the story and win battles. Read on-screen text and menus carefully before acting, and don't repeat a button that clearly isn't doing anything."
+}

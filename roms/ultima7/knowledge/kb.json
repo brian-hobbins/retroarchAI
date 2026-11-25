@@ -1,0 +1,360 @@
+{
+ "game": "ultima7",
+ "facts": [
+  {
+   "text": "Near avatar x=55,y=1241: dirt paths fork north and west, signs to the north, stone walls at screen corners.",
+   "step": 1,
+   "ts": 1795569239
+  },
+  {
+   "text": "Around x=55,y=1205 a north-south dirt path runs between stone buildings on the west and east sides.",
+   "step": 7,
+   "ts": 1795569302
+  },
+  {
+   "text": "Near x=55,y=1163: a well-like stone ring to the northeast, a fallen horse-like animal east; dirt path bends northwest.",
+   "step": 14,
+   "ts": 1795569315
+  },
+  {
+   "text": "Near x=40,y=1158: east-west dirt path; north stone building with brown door, two white pillars, brown object to the northeast.",
+   "step": 21,
+   "ts": 1795569335
+  },
+  {
+   "text": "At avatar x=49,y=1153: brown door is up-left; fallen horse and round stone ring lie to the east/southeast.",
+   "step": 26,
+   "ts": 1795569350
+  },
+  {
+   "text": "At x=48,y=1148: narrow grassy passage leads north between west stone building and east grey walls.",
+   "step": 27,
+   "ts": 1795569361
+  },
+  {
+   "text": "At x=55,y=1241 one sign stands up-left (by the north path) and another up-right near the east stone wall.",
+   "step": 1,
+   "ts": 1795569878
+  },
+  {
+   "text": "A brown-clad figure (possible NPC) was seen just south of avatar at about x=55,y=1236 on the dirt path.",
+   "step": 6,
+   "ts": 1795569890
+  },
+  {
+   "text": "Around x=61,y=1254: grassy area bounded by a stone wall to the south and east; brown figures lie to the northwest.",
+   "step": 12,
+   "ts": 1795569901
+  },
+  {
+   "text": "At x=31,y=1232: gap between a north and a southwest stone building; door-like openings on north wall (east) and SW building's east side.",
+   "step": 19,
+   "ts": 1795569919
+  },
+  {
+   "text": "At x=31,y=1232 a north-building door lies a short way east (about x=39); another door is a bit west.",
+   "step": 23,
+   "ts": 1795569927
+  },
+  {
+   "text": "At x=55,y=1241 a brown figure stands immediately right of the avatar on the dirt path.",
+   "step": 1,
+   "ts": 1795570031
+  },
+  {
+   "text": "Petre, the stablekeeper, can be talked to near x=57,y=1241 on the dirt path.",
+   "step": 6,
+   "ts": 1795570039
+  },
+  {
+   "text": "A group (likely the Fellowship) is 'community minded citizens'; Lord British endorsed it, so ask him about it.",
+   "step": 13,
+   "ts": 1795570047
+  },
+  {
+   "text": "At x=37,y=1232 a signpost stands to the east-northeast and a brown figure lies to the southeast on a dirt path.",
+   "step": 7,
+   "ts": 1795604563
+  },
+  {
+   "text": "At x=79,y=1233: round stone well just southeast, barrels along a building's east side to north, stone wall to east and south.",
+   "step": 14,
+   "ts": 1795604580
+  },
+  {
+   "text": "At x=82,y=1191: a north-south stone wall is just east, orange-leaf trees west, a building northwest, a white animal beyond the wall.",
+   "step": 21,
+   "ts": 1795604597
+  },
+  {
+   "text": "At x=76,y=1168: dark pyramid-roofed building to southwest, grey stone walls north and east, grassy strip runs south between them.",
+   "step": 28,
+   "ts": 1795604612
+  },
+  {
+   "text": "At x=80,y=1179: pyramid-roofed building to west has doors on its east and south sides; two orange trees south of it.",
+   "step": 41,
+   "ts": 1795604642
+  },
+  {
+   "text": "At x=81,y=1217: gap leads west between two pyramid-roofed buildings; barrels line their east sides.",
+   "step": 47,
+   "ts": 1795604661
+  },
+  {
+   "text": "At x=39,y=1217 a wooden door is in the building wall just north; grass strip lies to the east with a signpost southeast.",
+   "step": 54,
+   "ts": 1795604674
+  },
+  {
+   "text": "At x=55,y=1241 the dirt path forks north and southwest; signposts stand to the northwest and northeast.",
+   "step": 1,
+   "ts": 1795605271
+  },
+  {
+   "text": "At x=55,y=1199: dirt path runs north; signpost and two blue-topped stone objects northwest, a door in the building southwest.",
+   "step": 8,
+   "ts": 1795605284
+  },
+  {
+   "text": "At x=55,y=1157: walled yard with a lying horse southeast, stone well and a golden object east-northeast.",
+   "step": 15,
+   "ts": 1795605302
+  },
+  {
+   "text": "At x=55,y=1157: a building west-northwest has a wooden door and a signpost beside it.",
+   "step": 15,
+   "ts": 1795605302
+  },
+  {
+   "text": "Near x=42,y=1153 two white pillars flank the approach to a wooden door (north-west); a signpost stands just east of them.",
+   "step": 18,
+   "ts": 1795605337
+  },
+  {
+   "text": "At x=50,y=1157: HUD shows 0 gold and 0 keys; the signpost is just northwest, pillared wooden door further west-northwest.",
+   "step": 22,
+   "ts": 1795605375
+  },
+  {
+   "text": "At x=45,y=1157 a large brown creature or body lies to the east beside the dirt path, which bends south there.",
+   "step": 23,
+   "ts": 1795605385
+  },
+  {
+   "text": "At x=45,y=1157 the pillared wooden door is up-left; to reach it, go west between the two white pillars, then north.",
+   "step": 30,
+   "ts": 1795605461
+  },
+  {
+   "text": "At x=48,y=1222 a brown door is on a building's east wall, signpost just below it; another door and yellow plaque to the north.",
+   "step": 8,
+   "ts": 1795605644
+  },
+  {
+   "text": "The brown door at x=48,y=1222 did not respond to Y when facing west; don't retry it from there.",
+   "step": 12,
+   "ts": 1795605662
+  },
+  {
+   "text": "At x=71,y=1234: signpost just north, a wooden door on a stone building's south face up-right; barrels and a well east.",
+   "step": 19,
+   "ts": 1795605694
+  },
+  {
+   "text": "The signpost just north of x=71,y=1232 reads 'Stables'.",
+   "step": 23,
+   "ts": 1795605707
+  },
+  {
+   "text": "At x=40,y=1233: two people on the dirt path to the southeast; doors up-right and down-left, barrel to the west.",
+   "step": 33,
+   "ts": 1795605742
+  },
+  {
+   "text": "At x=45,y=1233: brown-hooded person and grey-haired person stand down-right on the dirt path; signpost up-right.",
+   "step": 34,
+   "ts": 1795605753
+  },
+  {
+   "text": "At x=50,y=1238: people stand just below and down-right on the dirt path; signpost and a door are to the north.",
+   "step": 38,
+   "ts": 1795605810
+  },
+  {
+   "text": "At x=50,y=1240 a conversation opened: portraits of a man in a yellow hood and a blond long-haired man.",
+   "step": 42,
+   "ts": 1795605823
+  },
+  {
+   "text": "Petre is the stablekeeper, met by talking near x=50,y=1240 (south of the 'Stables' sign area).",
+   "step": 43,
+   "ts": 1795605835
+  },
+  {
+   "text": "Townsfolk near Stables say a group (likely the Fellowship) is community-minded, many join; Lord British endorsed it.",
+   "step": 46,
+   "ts": 1795605856
+  },
+  {
+   "text": "Lead: ask Lord British about the community group he has endorsed.",
+   "step": 46,
+   "ts": 1795605856
+  },
+  {
+   "text": "Petre's conversation menu offers the topic 'Fellowship' (also 'Again', 'Bye!').",
+   "step": 52,
+   "ts": 1795605876
+  },
+  {
+   "text": "After Petre's Fellowship answer only 'Again' and 'Bye!' remain; choose 'Bye!' to leave.",
+   "step": 94,
+   "ts": 1795606052
+  },
+  {
+   "text": "At x=62,y=1230: brown- and grey-hooded people down-left on path; wooden door lower right on a dark-roofed stone building.",
+   "step": 128,
+   "ts": 1795606195
+  },
+  {
+   "text": "At x=58,y=1234: signposts stand west (up-left) and east (right), with doors on the northwest and northeast buildings.",
+   "step": 129,
+   "ts": 1795606209
+  },
+  {
+   "text": "At x=16,y=1233: stone rampart wall to the west, grass path north-south; wooden door and a barrel to the east.",
+   "step": 137,
+   "ts": 1795606251
+  },
+  {
+   "text": "At x=16,y=1191: stone wall west, dark-roofed buildings east and south, wooden hatch up-right, paving leads east.",
+   "step": 144,
+   "ts": 1795606268
+  },
+  {
+   "text": "At x=25,y=1202: tall stone wall west, two dark-roofed buildings, wooden door up-right in the upper building; grass open north and south.",
+   "step": 151,
+   "ts": 1795606298
+  },
+  {
+   "text": "At x=50,y=1195: blue-stone fountain-like objects, fallen signpost up-left, horse-like animal up-right by fence, dirt path east.",
+   "step": 158,
+   "ts": 1795606318
+  },
+  {
+   "text": "At x=76,y=1168: wooden crate/chest up-right on walkway at wall corner; castle-like stone walls up-right; animal up-left.",
+   "step": 165,
+   "ts": 1795606342
+  },
+  {
+   "text": "At x=81,y=1168: chest up-right behind battlements on wall walkway; grass strip leads south between building and wall.",
+   "step": 166,
+   "ts": 1795606365
+  },
+  {
+   "text": "At x=82,y=1168: crate sits up-right on wall walkway corner; walkway runs west/north and south, open grass east beyond wall.",
+   "step": 167,
+   "ts": 1795606381
+  },
+  {
+   "text": "Crate on wall walkway near x=82,y=1168 could not be opened by facing UP from below; likely out of reach from the ground.",
+   "step": 171,
+   "ts": 1795606398
+  },
+  {
+   "text": "At x=82,y=1193: wall to east with white creature beyond; barrel and brown door at lower building south; door up-left.",
+   "step": 178,
+   "ts": 1795606420
+  },
+  {
+   "text": "Near x=82,y=1208: building with barrels on east side; south face has a wooden door with a small yellow plaque to its left.",
+   "step": 181,
+   "ts": 1795606454
+  },
+  {
+   "text": "At x=72,y=1217: gap between two stone houses; door up-right on upper house, plaque to left, lower door south, wall east.",
+   "step": 188,
+   "ts": 1795606497
+  },
+  {
+   "text": "Screen went fully black and position read x=72,y=78 after being in the house area near x=72,y=1217 (possible interior/transition).",
+   "step": 191,
+   "ts": 1795606508
+  },
+  {
+   "text": "Interior at x=21,y=78: small stone room with wood floor, barrel in top-right corner, small chest/furniture east; no exit seen.",
+   "step": 198,
+   "ts": 1795606539
+  },
+  {
+   "text": "Interior room near x=30,y=74 has a possible exit: darker gap in the south wall, down-left.",
+   "step": 205,
+   "ts": 1795606577
+  },
+  {
+   "text": "At interior x=30,y=78, goto toward the south-wall dark gap (23,87) made no progress; likely not a doorway.",
+   "step": 225,
+   "ts": 1795606762
+  },
+  {
+   "text": "Screen turned fully black with a dialogue flag set at interior position x=30,y=77.",
+   "step": 229,
+   "ts": 1795606779
+  },
+  {
+   "text": "Trunk in the interior room near x=30,y=77 opens a panel showing a Hammer and other items; key and gold counts read 0.",
+   "step": 232,
+   "ts": 1795606794
+  },
+  {
+   "text": "Entry into this interior first read x=72,y=78, so the way out may be east of the trunk room (untested).",
+   "step": 236,
+   "ts": 1795606822
+  },
+  {
+   "text": "Walking straight RIGHT from interior x=30,y=77 is blocked; any eastward exit needs a different line.",
+   "step": 239,
+   "ts": 1795606841
+  },
+  {
+   "text": "At interior x=30,y=78, walking DOWN+RIGHT is blocked.",
+   "step": 243,
+   "ts": 1795606870
+  },
+  {
+   "text": "Interior position x=21,y=69 is the upper-left of the stone room; barrel lies right, chest-like object down-right.",
+   "step": 249,
+   "ts": 1795606911
+  },
+  {
+   "text": "At interior x=26,y=69, a round golden item lies to the east near the east wall (not yet examined).",
+   "step": 250,
+   "ts": 1795606928
+  },
+  {
+   "text": "Black screen with dialogue flag also occurred at interior position x=30,y=74.",
+   "step": 260,
+   "ts": 1795606994
+  },
+  {
+   "text": "The trunk in the interior room (opened near x=30,y=74) is now empty; do not reopen it.",
+   "step": 263,
+   "ts": 1795607006
+  },
+  {
+   "text": "Room is visible again at interior x=30,y=74 after the black screen; no dialogue open.",
+   "step": 282,
+   "ts": 1795607106
+  },
+  {
+   "text": "From interior x=30,y=74, goto toward the east/up-east (48,66) made no progress.",
+   "step": 285,
+   "ts": 1795607127
+  },
+  {
+   "text": "A brown-robed figure lies on the interior room floor, up-right of position x=21,y=75; not yet examined.",
+   "step": 290,
+   "ts": 1795607152
+  }
+ ]
+}

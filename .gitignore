@@ -1,0 +1,29 @@
+# Per-game folders (roms/<game>/) are tracked for config (game.json), knowledge
+# (knowledge/*.json) and the text manual, but NOT these heavy/churny binaries:
+#   ROM images, scanned PDF manuals, and savestates/battery saves.
+roms/**/*.sfc
+roms/**/*.smc
+roms/**/*.zip
+roms/**/*.pdf
+roms/**/*.state
+roms/**/*.srm
+!roms/.gitkeep
+
+# Savestates and logs
+saves/*
+!saves/.gitkeep
+logs/*
+!logs/.gitkeep
+
+# Secrets
+.env
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# OS
+.DS_Store

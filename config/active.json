@@ -1,0 +1,4 @@
+{
+  "_comment": "Selects which game folder under roms/ a no-argument launch uses. Each game keeps its own config in roms/<game>/game.json. Override by passing a ROM path to tools/watch.py.",
+  "game": "final-fantasyIII"
+}
