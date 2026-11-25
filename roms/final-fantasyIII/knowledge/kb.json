@@ -550,6 +550,56 @@
    "text": "In the cave, a battle with three Were-Rats began with ????? (Terra) at 0 HP; Wedge and Vicks were still standing.",
    "step": 238,
    "ts": 1795635334
+  },
+  {
+   "text": "Whelk battle reloaded: it opens with VICKS saying \"Hold it!\"; attack only the head, never the shell.",
+   "step": 249,
+   "ts": 1795635952
+  },
+  {
+   "text": "In the retried Whelk fight, Terra is KO'd (0/63); the two soldiers are still alive.",
+   "step": 252,
+   "ts": 1795635964
+  },
+  {
+   "text": "Vicks in the Whelk fight warns of a monster that eats lightning: avoid Bolt Beam on Whelk.",
+   "step": 257,
+   "ts": 1795636004
+  },
+  {
+   "text": "When only Whelk's spiked shell shows (no head), don't attack; defend or wait for the head to return.",
+   "step": 272,
+   "ts": 1795636208
+  },
+  {
+   "text": "In the MagiTek beam list, Heal Force is at the bottom of the left column: two DOWN taps from Fire Beam.",
+   "step": 276,
+   "ts": 1795636263
+  },
+  {
+   "text": "In battle, don't input beam selections until a command menu is actually open; wait for the ATB gauge.",
+   "step": 279,
+   "ts": 1795636294
+  },
+  {
+   "text": "In the current Whelk fight, Wedge (28 HP) and Vicks (11 HP) are low; prioritize Heal Force over attacking.",
+   "step": 287,
+   "ts": 1795636357
+  },
+  {
+   "text": "In the Whelk fight, memory HP (soldiers 70/105 and 48/107) disagrees with scout's 28/11; trust memory HP.",
+   "step": 294,
+   "ts": 1795636464
+  },
+  {
+   "text": "If the hand cursor sits on Whelk's shell while the beam list shows, press B to back out before choosing Heal Force.",
+   "step": 303,
+   "ts": 1795636540
+  },
+  {
+   "text": "Human coach: attacking the Whelk shell twice put both soldiers near death; heal with Heal Force while only the shell shows.",
+   "step": 304,
+   "ts": 1795636569
   }
  ]
 }

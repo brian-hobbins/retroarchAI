@@ -1,14 +1,20 @@
-"""Scout agent: the eyes. The one agent that actually LOOKS at the screenshot.
+"""Scout agent: the senses. The one agent that fuses what the game SHOWS and what
+the game's MEMORY says, into a single report for the Planner/thinker.
 
-It turns raw pixels into a structured, literal SCENE report — what is on screen,
-where each thing is relative to the player, and crucially whether each thing is
-INTERACTABLE (a person, an openable door, a pickup) versus scenery (a window, a
-wall, decoration). It does NOT strategize; it only reports what it sees.
+It does three things each call:
+  1. SCREENSHOT — look at the pixels and extract what is on screen (entities,
+     where each is relative to the player, interactable vs scenery, on-screen text).
+  2. RAM — read the ground-truth facts pulled straight from memory (party HP/MP,
+     gold, position, whether a battle/menu is active and where the cursor is).
+  3. ANALYZE BOTH — reconcile the two (memory is authoritative; it resolves what
+     the pixels leave ambiguous) and send ONE report to the Planner.
 
-That report is shared with the rest of the team (Planner reasons over it text-only;
-Executor's fallback can read it), which (a) centralizes vision into one good call
-instead of every agent squinting at pixels, and (b) stops the Planner from trying
-to "open" a window, because the Scout labels it scenery.
+That fused report is shared with the rest of the team (Planner reasons over it
+text-only; Executor's fallback can read it), which (a) centralizes perception into
+one good call instead of every agent squinting at pixels, (b) stops the Planner
+from trying to "open" a window because the Scout labels it scenery, and (c) grounds
+the scene in exact numbers (a character at 0 HP is KO'd; the command cursor is on
+row N) instead of pixel guesses.
 """
 
 from __future__ import annotations
@@ -65,7 +71,15 @@ _SYSTEM = (
     "scenery, not a door.\n"
     "List people FIRST. Put any readable on-screen text (dialogue, menus, signs) "
     "VERBATIM in 'text' (empty string if none). In 'exits', note visible ways to "
-    "leave or paths (e.g. 'door to the south, open path east'). Output ONLY JSON."
+    "leave or paths (e.g. 'door to the south, open path east').\n"
+    "You are ALSO given GROUND-TRUTH values read straight from the game's memory "
+    "(party HP/MP, gold, position, and — in battle — whether a command menu is open "
+    "and which row the cursor is on). TREAT MEMORY AS AUTHORITATIVE: trust it over "
+    "the pixels, use it to label things correctly (a party member at 0 HP is KO'd / "
+    "'Wounded'; in_battle means you are in a turn-based fight; a menu cursor value "
+    "tells you which command is highlighted), and when the screen and memory seem to "
+    "disagree, go with memory and note it. Fold the key memory facts into 'summary' "
+    "so the Planner gets one reconciled picture. Output ONLY JSON."
 )
 
 
@@ -84,6 +98,7 @@ class Scene:
     entities: List[Entity] = field(default_factory=list)
     text: str = ""
     exits: str = ""
+    ram: str = ""          # the ground-truth facts the Scout fused in (for the report)
     ok: bool = True
 
     def interactables(self) -> List[Entity]:
@@ -110,6 +125,8 @@ class Scene:
             lines.append(f"  exits/paths: {self.exits}")
         if self.text:
             lines.append(f'  on-screen text: "{self.text}"')
+        if self.ram:
+            lines.append(f"  GROUND TRUTH (memory): {self.ram}")
         return "\n".join(lines)
 
     def display(self) -> List[str]:
@@ -131,17 +148,29 @@ class Scout:
         self.timeout = timeout
 
     def look(self, obs) -> tuple[Scene, dict]:
+        # 2. READ RAM: fold the ground-truth memory facts into the prompt so the
+        #    Scout can reconcile them with the screenshot (1) and report both (3).
+        facts = getattr(obs, "ram_facts", None) or {}
+        vals = {k: v for k, v in facts.items() if not k.startswith("_")}
+        ram_block, ram_compact = "", ""
+        if vals:
+            ram_compact = ", ".join(f"{k}={v}" for k, v in vals.items())
+            hint = facts.get("_hint", "")
+            ram_block = ("\nGROUND-TRUTH FROM MEMORY (authoritative — trust over "
+                         f"pixels, use to label things correctly): {vals}. {hint}\n")
         prompt = (
             f"Your goal (context only): {obs.goal}\n"
+            f"{ram_block}"
             f"The current {obs.width}x{obs.height} screenshot is attached. "
-            "Report the scene as JSON."
+            "Read BOTH the screenshot and the ground-truth memory above, reconcile "
+            "them (memory wins on conflict), and report the scene as JSON."
         )
         payload, usage = run_claude_json(
             prompt, _SYSTEM, _SCHEMA, self.model,
             image_path=obs.image_path, timeout=self.timeout,
         )
         if not payload:
-            return Scene(summary="(scout: no view)", ok=False), usage
+            return Scene(summary="(scout: no view)", ram=ram_compact, ok=False), usage
         ents = []
         for e in payload.get("entities", []):
             if not isinstance(e, dict):
@@ -155,5 +184,5 @@ class Scout:
             ))
         return (Scene(summary=str(payload.get("summary", "")),
                       entities=ents, text=str(payload.get("text", "")),
-                      exits=str(payload.get("exits", "")), ok=True),
+                      exits=str(payload.get("exits", "")), ram=ram_compact, ok=True),
                 usage)

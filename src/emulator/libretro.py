@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import ctypes as C
 import os
+import struct
 from typing import Dict, Optional, Tuple
 
 # --- libretro constants -----------------------------------------------------
@@ -250,10 +251,26 @@ class LibretroCore:
         self._fb_h = height
         self._fb_pitch = pitch
 
+    def set_audio_sink(self, fn) -> None:
+        """Register a callable fn(pcm_bytes) that receives 16-bit signed stereo
+        PCM as the core produces it. None (default) discards audio."""
+        self._audio_sink = fn
+
     def _on_audio_sample(self, left: int, right: int):
-        pass
+        sink = getattr(self, "_audio_sink", None)
+        if sink is not None:
+            try:
+                sink(struct.pack("<hh", left, right))
+            except Exception:
+                pass
 
     def _on_audio_batch(self, data, frames: int) -> int:
+        sink = getattr(self, "_audio_sink", None)
+        if sink is not None:
+            try:
+                sink(C.string_at(data, frames * 4))   # frames * 2ch * 2 bytes
+            except Exception:
+                pass
         return frames
 
     def _on_input_poll(self):

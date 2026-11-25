@@ -23,6 +23,8 @@ DIALOGUE_REREAD = 3  # in a conversation, re-read + respond at least this often
 NOFEEDBACK_TICKS = 3  # pressing buttons with NO observable effect this many ticks
                       # -> the action is doing nothing; abandon it and try else
 REFLECT_EVERY = 15   # run the Reflector (learning step) this many ticks apart
+CONDENSE_EVERY = 120  # condense lessons this many ticks apart (cap token growth)
+CONDENSE_MIN = 30     # ...only once there are at least this many lessons
 PROGRESS_REWARD = 1.0  # a tick scoring >= this counts as meaningful progress
 
 
@@ -30,7 +32,8 @@ class Orchestrator:
     def __init__(self, planner_model="sonnet", executor_model="haiku",
                  scout_model="sonnet", timeout=60,
                  knowledge: KnowledgeBase = None, lessons: KnowledgeBase = None,
-                 reflect=True, controls: dict = None):
+                 reflect=True, controls: dict = None, demos: KnowledgeBase = None,
+                 story=None):
         self.planner = Planner(model=planner_model, timeout=timeout)
         self.executor = Executor(model=executor_model, timeout=timeout, controls=controls)
         self.scout = Scout(model=scout_model, timeout=timeout)
@@ -38,6 +41,14 @@ class Orchestrator:
         self.scene: Scene = None
         self.kb = knowledge
         self.lessons = lessons
+        # Raw human input (demonstrations + coaching) is parked here, NOT in lessons:
+        # it's distilled by the Reflector into concise lessons. This keeps lessons.json
+        # from being flooded by verbose scene-dumps and one-shot/sarcastic coach lines.
+        self.demos = demos
+        # narrative/lore log (markdown); consulted only when the Planner asks
+        self.story = story
+        self._consult_story = False
+        self.ticks_since_condense = 0
         self.reward = RewardTracker()
         self.reflect_enabled = reflect
         self.ticks_since_reflect = 0
@@ -100,8 +111,11 @@ class Orchestrator:
             msgs, self.coach_queue = self.coach_queue, []
             coach_note = " ".join(msgs)
             self.last_coach = coach_note
-            if self.lessons:
-                self.lessons.add_many([f"Human coach said: {m}" for m in msgs], obs.step)
+            # Coaching steers THIS decision now (coach_note -> Planner override below),
+            # and is parked as a demo for the Reflector to distill — not raw-persisted
+            # as a permanent lesson (that let transient/sarcastic lines become a bias).
+            if self.demos:
+                self.demos.add_many([f"Human coached: {m}" for m in msgs], obs.step)
 
         why = ""
         if coach_note:
@@ -134,23 +148,34 @@ class Orchestrator:
             self.stats["scout_calls"] += 1
             self.stats["scout_tokens"] += su.get("input_ctx", 0) + su.get("output", 0)
             self.stats["cost"] += su.get("cost", 0.0)
+            # the Scout is the ONLY agent that transcribes on-screen text (OCR);
+            # take dialogue/menu text from its report, not from Planner/Executor.
+            if self.scene is not None and self.scene.text.strip():
+                self.last_screen_text = self.scene.text
             scene_brief = self.scene.brief() if self.scene else ""
             obs.scene = scene_brief
             kb_summary = self.kb.summary() if self.kb else ""
             lessons_summary = self.lessons.summary(limit=20) if self.lessons else ""
+            # only inject the (token-heavy) story log when the Planner asked last turn
+            story_text = (self.story.tail() if (self._consult_story and self.story)
+                          else "")
             trouble = self._trouble_note(why, xy)
-            self.directive, u, stext, new_facts = self.planner.plan(
+            self.directive, u, new_facts, self._consult_story = self.planner.plan(
                 obs, kb_summary, lessons_summary, trouble=trouble, scene=scene_brief,
-                coach=coach_note)
-            if stext.strip():
-                self.last_screen_text = stext
+                coach=coach_note, story=story_text)
+            # route tagged facts: clue/mechanics -> notebook; story/lore -> story log
             self.last_new_facts = []
-            if self.kb and new_facts:
+            kb_facts = [f["text"] for f in new_facts if f.get("tag") in ("clue", "mechanics")]
+            story_facts = [f for f in new_facts if f.get("tag") in ("story", "lore")]
+            if self.kb and kb_facts:
                 before = self.kb.count()
-                self.kb.add_many(new_facts, obs.step)
+                self.kb.add_many(kb_facts, obs.step)
                 new_facts_added = self.kb.count() - before
                 if new_facts_added:
-                    self.last_new_facts = new_facts
+                    self.last_new_facts = kb_facts
+            if self.story and story_facts:
+                for f in story_facts:
+                    self.story.add(f["text"], f["tag"], obs.step)
             self.stats["planner_calls"] += 1
             self.stats["planner_tokens"] += u.get("input_ctx", 0) + u.get("output", 0)
             self.stats["cost"] += u.get("cost", 0.0)
@@ -162,6 +187,11 @@ class Orchestrator:
 
         if not obs.scene and self.scene:
             obs.scene = self.scene.brief()   # share latest perception with executor
+        if self.lessons:
+            # hand the Executor the hard-won lessons too, so the agent actually
+            # pressing buttons (e.g. navigating a battle menu) knows them — not just
+            # the Planner. Battle-relevant lessons float to the top via recency.
+            obs.lessons = self.lessons.summary(limit=14)
         action, u, agent = self.executor.act(self.directive, obs)
         if agent.startswith("code"):
             self.stats["code_ticks"] += 1
@@ -170,8 +200,6 @@ class Orchestrator:
             self.stats["executor_tokens"] += u.get("input_ctx", 0) + u.get("output", 0)
             self.stats["cost"] += u.get("cost", 0.0)
 
-        if getattr(action, "screen_text", "").strip():
-            self.last_screen_text = action.screen_text
         self.last_agent = agent
         self.ticks += 1
         self.total_ticks += 1
@@ -200,9 +228,12 @@ class Orchestrator:
         if (self.reflect_enabled and self.lessons
                 and self.ticks_since_reflect >= REFLECT_EVERY):
             self.ticks_since_reflect = 0
+            # distill recent human demos/coaching into generalized lessons too
+            demos_text = self.demos.summary(limit=25) if self.demos else ""
             new_lessons, ru = self.reflector.reflect(
                 self.reward.trajectory_text(),
-                self.lessons.summary(limit=20), self.reward.total)
+                self.lessons.summary(limit=20), self.reward.total,
+                demos_text=demos_text)
             self.stats["reflect_calls"] += 1
             self.stats["reflect_tokens"] += ru.get("input_ctx", 0) + ru.get("output", 0)
             self.stats["cost"] += ru.get("cost", 0.0)
@@ -212,24 +243,39 @@ class Orchestrator:
                 if self.lessons.count() > before:
                     self.last_new_lessons = new_lessons
 
+        # --- periodic condensation: merge/dedupe lessons to cap token growth ---
+        self.ticks_since_condense += 1
+        if (self.reflect_enabled and self.lessons
+                and self.ticks_since_condense >= CONDENSE_EVERY
+                and self.lessons.count() >= CONDENSE_MIN):
+            self.ticks_since_condense = 0
+            before = self.lessons.count()
+            condensed, cu = self.reflector.condense(
+                self.lessons.summary(limit=self.lessons.count()))
+            self.stats["reflect_calls"] += 1
+            self.stats["reflect_tokens"] += cu.get("input_ctx", 0) + cu.get("output", 0)
+            self.stats["cost"] += cu.get("cost", 0.0)
+            # only accept a real reduction that keeps a sensible amount of knowledge
+            if condensed and len(condensed) < before and len(condensed) >= min(10, before):
+                self.lessons.replace_all(condensed, obs.step)
+
         return action
 
     # ---- live human input: coaching + learning by watching ----
 
     def add_coach(self, msg: str) -> None:
-        """Queue a hint typed by the human watching. It overrides the next
-        decision and is recorded as a lesson (see decide())."""
+        """Queue a hint typed by the human watching. It overrides the next decision
+        (see decide()) and is parked as a demo the Reflector distills into a lesson —
+        not raw-persisted, so one-shot/sarcastic lines don't become a forever-bias."""
         msg = (msg or "").strip()
         if msg:
             self.coach_queue.append(msg)
 
-    def note_human(self, obs, buttons) -> None:
-        """Learn from a human playing: have the Scout read the screen and record,
-        as a lesson, what the human did in that situation. The KB de-dups, so
-        repeated identical demos collapse. Runs off the main thread (one Scout
-        call). The goal is fewer 'dumb' AI moves — the Planner reads these lessons."""
-        if not self.lessons:
-            return
+    def human_look(self, obs, buttons=None) -> None:
+        """While a HUMAN plays: the Scout keeps looking so the SCENE and DIALOGUE
+        panels stay live (and dialogue text, which only the Scout transcribes, keeps
+        updating). If the human just made a deliberate move (`buttons`), also record a
+        DEMO for the Reflector to distill into a lesson. Runs off the main thread."""
         try:
             scene, su = self.scout.look(obs)
         except Exception:
@@ -238,13 +284,16 @@ class Orchestrator:
         self.stats["scout_tokens"] += su.get("input_ctx", 0) + su.get("output", 0)
         self.stats["cost"] += su.get("cost", 0.0)
         if scene is not None and scene.ok:
-            self.scene = scene            # share the human-time perception too
-        brief = scene.brief() if scene is not None else ""
-        btxt = "+".join(buttons) if buttons else "wait"
-        # keep the situation short; the KB caps fact length and de-dups near-matches
-        situation = brief.replace("\n", " ")[:200]
-        self.lessons.add_many(      # add_many persists to disk (add alone doesn't)
-            [f"Human demo: when {situation} -> pressed {btxt}"], obs.step)
+            self.scene = scene            # share the human-time perception with the team
+            if scene.text.strip():
+                self.last_screen_text = scene.text   # keep DIALOGUE live
+        if buttons and self.demos and scene is not None:
+            # compact situation tag (summary + key RAM), NOT the whole verbose report
+            summ = (scene.summary or "").replace("\n", " ")[:120]
+            ram = (scene.ram or "")[:80]
+            situation = (summ + (f" [{ram}]" if ram else "")).strip()
+            self.demos.add_many(      # add_many persists to disk (add alone doesn't)
+                [f"Human demo: seeing {situation}, pressed {'+'.join(buttons)}"], obs.step)
 
     @staticmethod
     def _feedback_sig(kind, xy, in_dialogue, dsig):

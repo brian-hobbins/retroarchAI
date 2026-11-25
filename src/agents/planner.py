@@ -27,9 +27,19 @@ _SCHEMA = {
         "target_keyword_index": {"type": "integer"},
         "instruction": {"type": "string", "maxLength": 160},
         "done_when": {"type": "string", "maxLength": 120},
-        "screen_text": {"type": "string", "maxLength": 400},
-        "new_facts": {"type": "array", "items": {"type": "string", "maxLength": 200},
-                      "maxItems": 5},
+        "new_facts": {
+            "type": "array", "maxItems": 5,
+            "items": {
+                "type": "object", "additionalProperties": False,
+                "required": ["text", "tag"],
+                "properties": {
+                    "text": {"type": "string", "maxLength": 200},
+                    "tag": {"type": "string",
+                            "enum": ["story", "lore", "mechanics", "clue"]},
+                },
+            },
+        },
+        "consult_story": {"type": "boolean"},
     },
 }
 
@@ -53,14 +63,21 @@ _SYSTEM = (
     "a topic, or omit it to just advance the text.\n"
     "- freeform: ONLY as a last resort for something the above cannot express.\n"
     "'instruction' = one short first-person directive; 'done_when' = brief completion "
-    "test. In 'screen_text', copy any readable in-game text (dialogue, menus, signs) "
-    "VERBATIM, or empty string.\n"
+    "test. (Your SCOUT already transcribes on-screen text for you — don't re-type it.)\n"
     "You also keep a NOTEBOOK. You are given WHAT YOU'VE LEARNED SO FAR; use it to "
     "decide (e.g. go where a clue points). In 'new_facts', add any NEW durable facts "
-    "worth remembering to solve puzzles or advance the story — NPC names & where they "
-    "are, quest steps, clues, riddle hints, item/door/key locations, directions given. "
-    "Keep each fact short and specific; do NOT repeat anything already in the notebook; "
-    "leave empty if nothing new. Output ONLY the JSON object."
+    "worth remembering, each TAGGED by kind:\n"
+    "  - 'clue': a hint toward a puzzle / hidden item / quest step, a key/door/item "
+    "location, directions given — actionable, kept in the notebook.\n"
+    "  - 'mechanics': how the game works (a control, a system, what an item does).\n"
+    "  - 'story': plot/narrative events, what happened, who did what.\n"
+    "  - 'lore': world background, history, names — flavour, not immediately actionable.\n"
+    "'story' and 'lore' are filed in a separate STORY LOG (not shown every turn, to "
+    "save space); 'clue' and 'mechanics' go in the notebook. Keep each fact short and "
+    "specific; do NOT repeat anything already known; leave empty if nothing new.\n"
+    "Set 'consult_story'=true ONLY when you're stuck on a puzzle or looking for a "
+    "hidden thing and think past story/lore might hold the clue — the STORY LOG will "
+    "then be shown to you next turn. Output ONLY the JSON object."
 )
 
 
@@ -97,9 +114,9 @@ class Planner:
         self.timeout = timeout
 
     def plan(self, obs, knowledge: str = "", lessons: str = "",
-             trouble: str = "", scene: str = "",
-             coach: str = "") -> tuple[Directive, dict, str, list]:
-        prompt = _build_prompt(obs, knowledge, lessons, trouble, scene, coach)
+             trouble: str = "", scene: str = "", coach: str = "",
+             story: str = "") -> tuple[Directive, dict, list, bool]:
+        prompt = _build_prompt(obs, knowledge, lessons, trouble, scene, coach, story)
         # The Scout is the team's eyes: when it provided a scene report, the Planner
         # reasons text-only over that report + RAM (no image) to save tokens. If the
         # Scout had no view, fall back to looking at the screenshot itself.
@@ -109,7 +126,7 @@ class Planner:
             image_path=image, timeout=self.timeout,
         )
         if not payload:
-            return Directive.fallback(usage.get("error") or "no plan"), usage, "", []
+            return Directive.fallback(usage.get("error") or "no plan"), usage, [], False
         d = Directive(
             kind=str(payload.get("kind", "walk")),
             instruction=str(payload.get("instruction", "")),
@@ -119,12 +136,22 @@ class Planner:
             target_y=payload.get("target_y"),
             target_keyword_index=payload.get("target_keyword_index"),
         )
-        facts = [f for f in payload.get("new_facts", []) if isinstance(f, str)]
-        return d, usage, str(payload.get("screen_text", "")), facts
+        # new_facts are now {text, tag}; accept legacy strings too (tag -> clue)
+        facts = []
+        for f in payload.get("new_facts", []):
+            if isinstance(f, dict) and isinstance(f.get("text"), str):
+                tag = str(f.get("tag", "clue"))
+                facts.append({"text": f["text"],
+                              "tag": tag if tag in ("story", "lore", "mechanics", "clue")
+                              else "clue"})
+            elif isinstance(f, str):
+                facts.append({"text": f, "tag": "clue"})
+        return d, usage, facts, bool(payload.get("consult_story", False))
 
 
 def _build_prompt(obs, knowledge: str = "", lessons: str = "",
-                  trouble: str = "", scene: str = "", coach: str = "") -> str:
+                  trouble: str = "", scene: str = "", coach: str = "",
+                  story: str = "") -> str:
     ram = ""
     if obs.ram_facts:
         hint = obs.ram_facts.get("_hint", "")
@@ -137,6 +164,10 @@ def _build_prompt(obs, knowledge: str = "", lessons: str = "",
     notes = ""
     if knowledge:
         notes = f"\nWHAT YOU'VE LEARNED SO FAR (your notebook):\n{knowledge}\n"
+    storylog = ""
+    if story:
+        storylog = ("\nSTORY LOG (you asked to consult it — look here for a clue to "
+                    f"your puzzle / hidden thing):\n{story}\n")
     strat = ""
     if lessons:
         strat = f"\nSTRATEGY LESSONS (follow these to play better):\n{lessons}\n"
@@ -157,6 +188,7 @@ def _build_prompt(obs, knowledge: str = "", lessons: str = "",
         f"Overall goal: {obs.goal}\n"
         f"{manual}"
         f"{notes}"
+        f"{storylog}"
         f"{strat}"
         f"{coaching}"
         f"{trbl}"

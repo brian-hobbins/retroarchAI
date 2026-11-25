@@ -165,6 +165,37 @@ def ff6_facts(emu, fair_only: bool = False) -> Dict[str, object]:
         entries.append(("party", " | ".join(members), hint, True))
         entries.append(("party_size", len(members), "", True))
 
+    # --- battle state (verified live against a Whelk-fight savestate) ---
+    # $11E0 (u16): encountered-monster formation — 0 in the field, non-zero in a
+    # battle. The whole $11xx battle block is zeroed outside battle, so this is a
+    # reliable "am I in a fight?" signal.
+    formation = emu.read_u16(0x11E0)
+    if formation is not None and 0 < formation < 0x800:
+        entries.append(("in_battle", True,
+            "You are IN A TURN-BASED BATTLE (FF6). Act ONLY when battle_menu_open=1; "
+            "otherwise a gauge is still filling or an action is animating, so WAIT "
+            "(don't mash). To act: move the cursor with UP/DOWN and press A to choose a "
+            "command, then choose a target and press A. Heal or revive a low/0-HP ally; "
+            "don't waste turns attacking a defended shell.", True))
+        # $201: 1 while a command menu is open and waiting for input, else 0.
+        # Verified stable through idle frames and flips to 0 once a command is taken.
+        menu_open = emu.read_u8(0x201) == 1
+        entries.append(("battle_menu_open", bool(menu_open),
+            "1 = a command menu is OPEN and waiting for you — act now. 0 = no menu is "
+            "up (gauge filling / action animating) — wait, don't press anything.", True))
+        if menu_open:
+            # cursor rows (0 = top). $43F6 = the top command menu (e.g. MagiTek=0,
+            # Item=1); $3B = the open sub-list (e.g. the MagiTek beam list). Use these
+            # WITH the screen to confirm which option is highlighted before pressing A.
+            entries.append(("battle_cmd_row", emu.read_u8(0x43F6),
+                "highlighted row in the TOP battle command menu (0 = top). "
+                "Press DOWN/UP to change it, then A.", True))
+            entries.append(("battle_sub_row", emu.read_u8(0x3B),
+                "highlighted row in the OPEN sub-list (e.g. the MagiTek beam list — "
+                "move to the one you want, like Heal Force, and confirm it's highlighted "
+                "before pressing A). Only meaningful once a sub-menu is open on screen.",
+                True))
+
     return _assemble(entries, fair_only)
 
 

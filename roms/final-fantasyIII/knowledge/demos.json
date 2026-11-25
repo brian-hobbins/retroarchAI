@@ -1,0 +1,465 @@
+{
+ "game": "final-fantasyIII",
+ "facts": [
+  {
+   "text": "Human demo: when SCENE (scout report): Intro scene: narration text without a box over a dark town with blue roofs, two people, steam and barrels.   NOT interactable (scenery): Brown-haired person, red/white outfit (DO -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Dark cutscene: narration text fades over a night view of multi-level metal structures and starry sky. No dialogue box.   NOT interactable (scenery): Metal building with walkway ( -> pressed START",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Blank screen: the whole image is a uniform very dark navy/charcoal color. No characters, menus or text visible.   exits/paths: None visible. -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Intro cutscene: narration text over a darkened view of cliffs, with a pale patch at lower left. No dialogue box.   NOT interactable (scenery): Dark rocky cliffs (HERE); Pale snow -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Intro cutscene: narration text over a view of a tall dark cliff with snowy rocks at lower left. No dialogue box.   NOT interactable (scenery): Cliff face (HERE); Snowy rocky peak -> pressed START",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Intro cutscene: narration text over a snowy cliff scene with a wooden bridge. No dialogue box or visible characters.   NOT interactable (scenery): Wooden bridge (HERE); Rocky cli -> pressed START",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Intro cutscene: narration text over a view of a snowy cliff with a wooden fence structure and a dark chasm.   NOT interactable (scenery): Wooden fence/scaffold structure (UP); Ro -> pressed Y",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Three riders in armored walkers stand on a snowy cliff path at night. No dialogue box or menu is visible.   NOT interactable (scenery): Green-haired rider in armored walker (HERE -> pressed START",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human coach said: You are NOT in the game yet - this is the TITLE / attract-demo screen looping. Press START now to open the menu, then press A to begin a New Game. Do not just wait.",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human coach said: press start",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Dialogue box open over a snowy cliff path; two armored riders and a green-haired rider stand mid-screen.   INTERACTABLE: Dialogue box [other] to the UP \u2014 Text ends at 'fol'; no a -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Snowy field under a starry night sky with falling snow; three dark mechanical armored walkers seen from behind. No text box.   NOT interactable (scenery): Armored walker (front/b -> pressed START",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Three armored mechs seen from behind on a snowy field under a starry night sky; pseudo-3D view, no dialogue box.   NOT interactable (scenery): Armored mech (front/bottom) (HERE); -> pressed START",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Dialogue box from WEDGE over a dark town scene with three figures riding mechanical armor on a path with metal grates.   NOT interactable (scenery): Brown-capped rider in mech ar -> pressed START",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Night-time town street; the player (an armored walker suit with rider) stands on a path below a large arched gateway.   INTERACTABLE: Arched gateway [exit] to the UP \u2014 Dark arch  -> pressed X",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Menu screen with 'Order' header and party list: WEDGE, VICKS, ?????. A hand cursor points at ?????'s portrait.   INTERACTABLE: WEDGE (party slot 1) [other] to the UP \u2014 LV 1, HP 6 -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Town scene: player in Magitek armor faces two guards to the north; dialogue box open, text still appearing.   INTERACTABLE: Guard (left) [npc] to the UP; Guard (right) [npc] to t -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle screen in a snowy town street. Vicks' turn (name yellow); menu open with hand cursor on MagiTek. Two enemies on the left.   INTERACTABLE: Armored enemy (upper) [enemy] to  -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle screen in a snowy town street. Command menu open (cursor on MagiTek); marker over the rightmost, lowest rider.   INTERACTABLE: Active rider in Magitek armor [player] to th -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle screen in a snowy town: victory message 'Got 32 Exp. point(s)' shown; three party members in mechs stand at right.   INTERACTABLE: Victory message box [other] to the UP \u2014  -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle screen over a town street; message box says WEDGE gained a level. Three armored mechs with riders on the right.   INTERACTABLE: Level-up message box [other] to the UP \u2014 Ba -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Town rooftop scene with chimney steam; a dialogue box shows a GUARD speaking. Armored mech rider at center on a walkway.   NOT interactable (scenery): Pale-haired figures (two) ( -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Turn-based battle on a snowy town street: three party members in mechs (right) face two wolves (left). Command menu is open.   INTERACTABLE: VICKS (mech rider, active) [player] t -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle: attack menu open, cursor on Fire Beam. Two wolves on left; three armored-walker riders on right.   INTERACTABLE: Wolf (upper) [enemy] to the LEFT \u2014 Grey wolf, upper left  -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Turn-based battle: 'Fire Beam' banner; a wolf faces three riders in mechs. Command menu open, hand cursor on MagiTek.   INTERACTABLE: Green-haired rider in mech [player] to the H -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle screen with victory message 'Got 24 Exp. point(s)'. Three party riders in mech armor on the right; no enemies visible.   INTERACTABLE: Victory message box [other] to the U -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle on snowy town street. ????? (rightmost, marker above) has command menu open; cursor on MagiTek. Two enemies at left.   INTERACTABLE: Large gray humanoid enemy [enemy] to t -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle: 3 riders in mech armor (right) face 2 armored soldiers (left). Beam skill menu is open at the bottom.   INTERACTABLE: Armored soldier (upper) [enemy] to the LEFT \u2014 White  -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle victory screen: message box reads experience gained; party in armored walkers on the right, snowy town backdrop.   INTERACTABLE: Victory message box [other] to the UP \u2014 Sh -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Dialogue box open with a GUARD line over a town scene; figures on a narrow walkway, one large armored figure at top center.   NOT interactable (scenery): Armored figure with brow -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle screen in a snowy town: three armored walker riders face a wolf and two armed soldiers. Command menu open, cursor on MagiTek.   INTERACTABLE: Armed soldier with shield (le -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle in a town street. Skill menu open; hand cursor points at Bolt Beam. White marker above the top party unit.   INTERACTABLE: Armored soldier (left) [enemy] to the LEFT \u2014 Hol -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Turn-based battle in a snowy town street: three mech-riding party members face one wolf; command menu open, VICKS highlighted.   INTERACTABLE: Wolf [enemy] to the UP-RIGHT \u2014 Larg -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle screen on a snowy town street: three mounted mechs in a column, command menu open for the party (MagiTek / Item).   INTERACTABLE: Mech rider (top of column) [player] to th -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle victory screen on a town stone street: message box shows EXP gained; three armored mech riders stand mid-screen.   INTERACTABLE: Victory message box [other] to the UP \u2014 To -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle screen with a reward banner 'Got Tonic \u00d7 1'. Three armored mech riders stand mid-field; no enemies visible.   INTERACTABLE: Reward message box [other] to the UP \u2014 Banner a -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Snowy, dark town with blue roofs. Player sprite stands mid-screen on a narrow north-south street. No dialogue or menu.   INTERACTABLE: Door in upper-right building [door] to the  -> pressed X",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Item menu open; hand cursor points at 'Tonic' (quantity 1). Description box reads 'Recovers 50 HP'.   INTERACTABLE: Tonic : 1 [item] to the HERE \u2014 Only item listed; highlighted b -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Item menu screen: header options USE, ARRANGE, RARE; item list is empty; hand cursor at left of the list.   NOT interactable (scenery): Hand cursor (UNKNOWN); Empty item list pan -> pressed B",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Snowy town with rooftops and cliffs; a figure in mechanical armor stands at center. Dialogue box at top shows a GUARD line.   NOT interactable (scenery): Figure riding mechanical -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle scene on a town street: two Vomammoths and two Guards on the left face the party on the right.   INTERACTABLE: Vomammoth (upper) [enemy] to the LEFT \u2014 Shaggy tusked beast, -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Turn-based battle: VICKS's command menu is open, cursor on MagiTek. Four enemies on the left, three mounted party members on the right.   INTERACTABLE: Active party member in mec -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle in a snowy town street: two armored soldiers and a shaggy tusked beast vs. party in mechs. Command menu open for VICKS.   INTERACTABLE: Shaggy tusked beast [enemy] to the  -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Turn-based battle on a snowy town street; WEDGE's command menu is open with cursor on MagiTek.   INTERACTABLE: Armored soldier (upper left) [enemy] to the UP-LEFT \u2014 Large armored -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle on a town street. Skill list open; hand cursor appears by the upper-left armored enemy. Triangle marks top party unit.   INTERACTABLE: Armored soldier (upper) [enemy] to t -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle on a snowy town street. Vicks's command menu is open, cursor on MagiTek. Two enemies at left, party at right.   INTERACTABLE: Furry tusked beast [enemy] to the LEFT \u2014 Larg -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle screen: one enemy on left, party in armored mechs on right. WEDGE's command menu is open, hand cursor on MagiTek.   INTERACTABLE: Armored humanoid foe with weapon [enemy]  -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle screen with message box 'Got 98 Exp. point(s)'. Three armored mechs with riders on the right; no enemies visible.   INTERACTABLE: Battle result message box [other] to the  -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle results screen: message box reads 'Got 276 GP' over a snowy town battle background, party status shown below.   INTERACTABLE: Reward message box [other] to the UP \u2014 Shows  -> pressed B",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Dialogue box open at top (WEDGE speaking). Three armored mounted figures stand in a snowy, rocky area with wooden structures.   INTERACTABLE: Soldier in walker armor (left) [npc] -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human coach said: The game has ALREADY STARTED - you are now in the opening Magitek march scene, NOT the title screen. STOP pressing START. From now on press A to advance dialogue/message boxes and to act. Ignore the earlier START instruction.",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Turn-based battle in a dark cave: three creature enemies on the left, armored party on the right, bottom window shows only a hand cursor.   INTERACTABLE: Creature enemy (upper le -> pressed START",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle in a cave: 3 rat-like enemies on left, mech-riding party on right. Beam menu open, cursor on Fire Beam.   INTERACTABLE: Rat-like enemy (upper middle) [enemy] to the LEFT;  -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle screen: one creature on the left, party in walker armor on the right. Command menu open, hand cursor on MagiTek; VICKS highlighted.   INTERACTABLE: Creature (pale body, re -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle victory screen in a cave: a message box reports Exp. gained; party sprites stand on the right. No enemies visible.   NOT interactable (scenery): Party member (upper armore -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Dark mine cave: party character stands on a cave floor, with rail tracks to the right and a flame above.   NOT interactable (scenery): Player character (brown hat) (HERE); Blue/w -> pressed START",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Save menu with three slots: first holds WEDGE data (LV 4), other two Empty. Cursor points at the first slot.   INTERACTABLE: Cursor on WEDGE save slot [other] to the LEFT \u2014 Point -> pressed B",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Main menu (subscreen) open; hand cursor on 'Item'. Party: WEDGE, VICKS, and ????? shown as Wounded with 0 HP.   INTERACTABLE: Hand cursor on Item [other] to the UP-RIGHT \u2014 Menu s -> pressed B",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human coach said: go right and then up on the path",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human coach said: there is no diagonal pathing in this game. only up, down, left and right",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human coach said: walk up",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human coach said: keep walking",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human coach said: stop",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human coach said: go back up",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human coach said: keep going up until you are stopped by a wall",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human coach said: tehn go right",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human coach said: now you are in a fight scene",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human coach said: white triangle above your party member's head means it your turn. dont wait. make a decision and execute it",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human coach said: you only have to push A button once.. dont mash it",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human coach said: go left. stop at wooden path. then go up",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human coach said: go up through the tunnel",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human coach said: 2 steps to the right, then go up",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human coach said: take 2 steps to the right. then stop",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human coach said: now walk up and dont stop unless something stops you",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human coach said: remember, Vicks said dont attack the shell!",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human coach said: you need to heal",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human coach said: you just chose fire beam after you said you were going to use heal force",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human coach said: stay on the pth and keep going up",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle in a cave: three creatures on the left face the party on the right. Command menu open, cursor on MagiTek.   INTERACTABLE: Rat-like creature (upper middle) [enemy] to the L -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle screen: three creatures at left face three armored riders at right. Command menu open, cursor on MagiTek; VICKS highlighted.   INTERACTABLE: Active rider (white triangle m -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle in a cave. WEDGE's command menu is open, hand cursor on MagiTek. One enemy at left; party in armored mounts at right.   INTERACTABLE: Enemy creature (red-topped beast) [en -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle screen in a cave: victory message \"Got 31 Exp. point(s)\" shown above party status window.   INTERACTABLE: Victory message box [other] to the UP \u2014 Top box reading experienc -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Cave scene with an open dialogue box from VICKS; a green-haired rider in a mech suit and another armored machine stand on the path.   INTERACTABLE: Brown armored mech [npc] to th -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Cave scene: dialogue box at top reads a GUARD line. Rider on a mechanical walker stands on a cave path between two torches.   INTERACTABLE: Wooden stairs/ladder [exit] to the DOW -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human coach said: remember to watch health of party members. if it gets low, dont forget to use use heal force",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Turn-based battle in a cave: command menu open (MagiTek / Item) with cursor on MagiTek; Wedge's name highlighted.   INTERACTABLE: WEDGE (highlighted, white marker) [player] to th -> pressed X",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Turn-based battle: spiked-shell snail enemy at left, party in Magitek armor at right, command menu open (MagiTek/Item).   INTERACTABLE: WEDGE (Magitek rider) [player] to the HERE -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human demo: when SCENE (scout report): Battle in a cave: party in Magitek armor on the right faces a large spiked-shell creature on the left. Command menu open.   INTERACTABLE: Spiked-shell snail creature [enemy] to t -> pressed A",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human coach said: dont attack the shell",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human coach said: use heal force!!!!",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human coach said: before taking your turn. always check scout report for the health. then go to magitek > down down A to select Heal Force",
+   "step": 0,
+   "ts": 1795638252
+  },
+  {
+   "text": "Human coach said: good job . you attacked the shell twice and will both die now",
+   "step": 0,
+   "ts": 1795638252
+  }
+ ]
+}

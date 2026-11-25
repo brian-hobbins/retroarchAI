@@ -23,6 +23,7 @@ class Observation:
     ram_facts: dict = field(default_factory=dict)     # ground-truth state read from RAM
     manual: str = ""                                  # game manual text (controls/lore)
     scene: str = ""                                   # Scout's perception report (shared)
+    lessons: str = ""                                 # hard-won lessons (shared w/ Executor)
 
 
 @dataclass

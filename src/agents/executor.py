@@ -16,12 +16,11 @@ ZERO = {"ok": True, "error": None, "input_ctx": 0, "output": 0, "cost": 0.0}
 _EXEC_SCHEMA = {
     "type": "object",
     "additionalProperties": False,
-    "required": ["buttons", "hold_frames", "reason", "screen_text"],
+    "required": ["buttons", "hold_frames", "reason"],
     "properties": {
         "buttons": {"type": "array", "items": {"type": "string"}, "maxItems": 4},
         "hold_frames": {"type": "integer", "minimum": 1, "maximum": 120},
         "reason": {"type": "string", "maxLength": 140},
-        "screen_text": {"type": "string", "maxLength": 400},
     },
 }
 
@@ -29,8 +28,8 @@ _EXEC_SYSTEM = (
     "You are the EXECUTOR for an agent playing a SNES game — you are the character, "
     "think in first person. You are given a short DIRECTIVE and the current screen; "
     "press the controller buttons that make progress on it, following the manual's "
-    "controls. Keep 'reason' to one short first-person clause. Copy any on-screen "
-    "text into 'screen_text' verbatim (or empty). Output ONLY the JSON object."
+    "controls. Keep 'reason' to one short first-person clause. Output ONLY the JSON "
+    "object. (The Scout already transcribes on-screen text — you don't need to.)"
 )
 
 
@@ -134,6 +133,10 @@ class Executor:
             vals = {k: v for k, v in obs.ram_facts.items() if not k.startswith("_")}
             ram = f"\nGROUND-TRUTH (memory): {vals}. {obs.ram_facts.get('_hint','')}"
         scene = f"\n{obs.scene}\n" if getattr(obs, "scene", "") else ""
+        lessons = ""
+        if getattr(obs, "lessons", ""):
+            lessons = ("\nLESSONS LEARNED (hard-won — obey these when they apply, "
+                       f"e.g. in battle):\n{obs.lessons}\n")
         manual = ""
         if obs.manual:
             manual = ("\nMANUAL (controls):\n\"\"\"\n" + obs.manual[:2500] + "\n\"\"\"\n")
@@ -141,6 +144,7 @@ class Executor:
             f"Directive: {directive.instruction}\n"
             f"{manual}"
             f"{scene}"
+            f"{lessons}"
             f"The current {obs.width}x{obs.height} screenshot is attached."
             f"{ram}\n"
             "Press the buttons that advance the directive. JSON only."
@@ -156,6 +160,5 @@ class Executor:
             buttons=list(payload.get("buttons", [])),
             hold_frames=int(payload.get("hold_frames", 6)),
             reason=str(payload.get("reason", "")),
-            screen_text=str(payload.get("screen_text", "")),
         ).sanitized()
         return act, usage, f"llm:{self.model}"

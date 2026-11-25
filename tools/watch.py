@@ -41,8 +41,10 @@ from emulator.cores import find_snes_core  # noqa: E402
 from emulator.libretro import LibretroCore, SNES_BUTTONS  # noqa: E402
 from emulator.memory_map import get_reader  # noqa: E402
 from emulator.manual import find_manual  # noqa: E402
+from emulator.audio import AudioOut  # noqa: E402
 from agents.orchestrator import Orchestrator  # noqa: E402
-from agents.knowledge import KnowledgeBase  # noqa: E402
+from agents import orchestrator as _oc, reward as _rw  # noqa: E402  (tunable constants)
+from agents.knowledge import KnowledgeBase, StoryLog  # noqa: E402
 import re  # noqa: E402
 from emulator.pngwrite import write_png  # noqa: E402
 from providers.base import Action, Observation  # noqa: E402
@@ -275,11 +277,13 @@ def main() -> int:
 
     kb = KnowledgeBase(game_dir, game_key=game_key)
     lessons_store = KnowledgeBase(game_dir, filename="lessons.json", game_key=game_key)
+    demos_store = KnowledgeBase(game_dir, filename="demos.json", game_key=game_key)
+    story_log = StoryLog(game_dir)      # narrative/lore -> knowledge/story.md
     orch = Orchestrator(planner_model=planner_model,
                         executor_model=executor_model,
                         scout_model=scout_model,
-                        knowledge=kb, lessons=lessons_store,
-                        controls=cfg.get("controls"))
+                        knowledge=kb, lessons=lessons_store, demos=demos_store,
+                        story=story_log, controls=cfg.get("controls"))
     print(f"game: {cfg.get('name', game_key)}  (folder: roms/{gdir})")
     print(f"agents: scout={scout_model}  planner={planner_model}  "
           f"executor={executor_model} (hybrid code+LLM)")
@@ -296,6 +300,16 @@ def main() -> int:
     os.makedirs(obs_dir, exist_ok=True)
 
     pygame.init()
+    # Game audio (off by default; toggle with M). Only clean at 1x, so the loop
+    # mutes it during fast-forward. Uses its own SDL device, so free the mixer.
+    try:
+        pygame.mixer.quit()
+    except Exception:
+        pass
+    audio = AudioOut(av.timing.sample_rate or 32040.0)
+    emu.set_audio_sink(audio.feed)
+    sound_on = False
+    print(f"audio: {'ready (press M for sound)' if audio.ok else 'unavailable'}")
     pygame.joystick.init()
     pad_map = load_gamepad_map()
     pad = None
@@ -309,15 +323,25 @@ def main() -> int:
         print("gamepad: not mapped (keyboard only); run tools/map_controller_gui.py")
     W, H = 256, 224
     scale = args.scale
-    GW, GH = W * scale, H * scale           # game area (centered)
+    GW, GH = W * scale, H * scale           # game area (fills between the side panels)
     LW, RW = 240, 360                       # left=ACTIONS, right=DIALOGUE/THINKING
     TOPBAR = 26                             # shortcuts strip across the very top
     WIN_W, WIN_H = LW + GW + RW, GH + TOPBAR
-    window = pygame.display.set_mode((WIN_W, WIN_H))
+    MIN_W, MIN_H = LW + RW + 256, TOPBAR + 224   # keep the game area usable
+    # Resizable window — the OS title bar's minimize / maximize / close work, and
+    # dragging an edge (or maximize) expands the whole view; VIDEORESIZE rescales.
+    window = pygame.display.set_mode((WIN_W, WIN_H), pygame.RESIZABLE)
     # Everything (game + panels) draws onto this content surface, which is then
     # composited BELOW the top shortcuts bar — so the existing panel code is
     # unchanged and only the final compositing step knows about the bar.
     screen = pygame.Surface((WIN_W, GH))
+
+    def apply_size(nw, nh):
+        nonlocal WIN_W, WIN_H, GW, GH, screen, window
+        WIN_W, WIN_H = max(MIN_W, int(nw)), max(MIN_H, int(nh))
+        GW, GH = WIN_W - LW - RW, WIN_H - TOPBAR   # panels fixed-width; game fills rest
+        window = pygame.display.set_mode((WIN_W, WIN_H), pygame.RESIZABLE)
+        screen = pygame.Surface((WIN_W, GH))
     pygame.display.set_caption("retroarchAI — watch")
     font = pygame.font.SysFont("monospace", 15)
     font_big = pygame.font.SysFont("monospace", 18, bold=True)
@@ -337,18 +361,21 @@ def main() -> int:
     coach_active = False       # typing a message to the AI right now
     coach_text = ""
     overlay_active = False     # F1 settings/info overlay (pauses the game)
+    constants_active = False   # C constants/tuning menu (pauses the game)
     SPEED_PRESETS = [1, 2, 4, 8, 16]   # emulator frames advanced per display tick
     speed_idx = 0
     speed = SPEED_PRESETS[speed_idx]   # fast-forward multiplier (F cycles it)
-    human_future = None        # background Scout call noting what the human did
+    human_future = None        # background Scout look during human play
     prev_human_btns = []       # for rising-edge detection of deliberate presses
+    human_pending_btns = []    # deliberate buttons awaiting the next look's demo
+    _facts_cache = {}          # RAM facts captured for the in-flight human look
     last_demo_t = 0.0
     ACTION_BTNS = {"A", "B", "X", "Y", "L", "R", "START"}  # deliberate (non-move)
-    HUMAN_DEMO_COOLDOWN = 1.5  # seconds between learning-from-human snapshots
+    HUMAN_LOOK_COOLDOWN = 2.0  # seconds between Scout looks while a human plays
     coach_inbox = os.path.join(ROOT, "logs", "coach_inbox.txt")  # shell can echo here
     coach_inbox_pos = os.path.getsize(coach_inbox) if os.path.isfile(coach_inbox) else 0
-    SHORTCUTS = ("F1 settings   F fast-fwd   TAB AI/Human   SPACE pause   / coach   "
-                 "F5 save   F9 load   ESC quit")
+    SHORTCUTS = ("F1 settings   C constants   F fast-fwd   M sound   TAB AI/Human   "
+                 "SPACE pause   / coach   F5 save   F9 load   ESC quit")
     steps = 0
     batch = args.max_steps or 30      # size of one "round" batch
     step_budget = args.max_steps      # 0 = unlimited; else stop at this many
@@ -361,8 +388,11 @@ def main() -> int:
             return
         w, h, rgb = fr
         surf = pygame.image.frombuffer(rgb, (w, h), "RGB")
-        surf = pygame.transform.scale(surf, (GW, GH))
-        screen.blit(surf, (LW, 0))
+        # scale to fit the (possibly resized) game area, keeping the SNES aspect
+        sc = min(GW / w, GH / h)
+        tw, th = max(1, int(w * sc)), max(1, int(h * sc))
+        surf = pygame.transform.scale(surf, (tw, th))
+        screen.blit(surf, (LW + (GW - tw) // 2, (GH - th) // 2))
 
     def draw_topbar():
         # Horizontal strip of APP / emulator shortcuts (NOT in-game controls).
@@ -394,6 +424,9 @@ def main() -> int:
             (f"obs scale : {AI_OBS_SCALE}x     autosave: every {AUTOSAVE_EVERY} decisions",
              (200, 200, 210)),
             (f"speed     : {speed}x  (press F to cycle 1/2/4/8/16x)", (200, 200, 210)),
+            (f"sound     : {'on' if sound_on else 'off'}  "
+             + ("(press M; muted during fast-forward)" if audio.ok else "(unavailable)"),
+             (200, 200, 210)),
             (f"savestate : {os.path.relpath(state_quick, ROOT)}", (200, 200, 210)),
             ("", (0, 0, 0)),
             ("SHORTCUTS (app / emulator — not in-game):", (150, 220, 255)),
@@ -411,6 +444,45 @@ def main() -> int:
         yy = 16
         for txt, col in lines:
             if txt:
+                box.blit(font_lbl.render(txt, True, col), (18, yy))
+            yy += 22
+        window.blit(box, ((WIN_W - bw) // 2, (WIN_H - bh) // 2))
+
+    def draw_constants():
+        # C menu: the tuning constants, grouped. Pauses the game (read-only view).
+        acc, dim = (150, 220, 255), (200, 200, 210)
+        lines = [
+            ("CONSTANTS / TUNING", acc),
+            ("", None),
+            ("AI pacing (orchestrator) — how often it re-plans:", acc),
+            (f"  MAX_TICKS {_oc.MAX_TICKS}   HARD_MAX {_oc.HARD_MAX}   "
+             f"STALL_TICKS {_oc.STALL_TICKS}", dim),
+            (f"  NOFEEDBACK_TICKS {_oc.NOFEEDBACK_TICKS}   "
+             f"DIALOGUE_REREAD {_oc.DIALOGUE_REREAD}", dim),
+            (f"  REFLECT_EVERY {_oc.REFLECT_EVERY}   CONDENSE_EVERY {_oc.CONDENSE_EVERY}"
+             f"   PROGRESS_REWARD {_oc.PROGRESS_REWARD}", dim),
+            ("", None),
+            ("Reward / penalty weights (reward tracker):", acc),
+            (f"  new text +{_rw.R_NEW_TEXT}   new fact +{_rw.R_NEW_FACT}   "
+             f"new area +{_rw.R_NEW_AREA}   moved +{_rw.R_MOVED}", dim),
+            (f"  stuck {_rw.P_STUCK}   no-feedback {_rw.P_NO_FEEDBACK}   "
+             f"area-jump thresh {_rw.AREA_JUMP}", dim),
+            ("", None),
+            ("Viewer:", acc),
+            (f"  AI obs scale {AI_OBS_SCALE}x   autosave every {AUTOSAVE_EVERY} decisions",
+             dim),
+            (f"  human-look every {HUMAN_LOOK_COOLDOWN}s   speeds {SPEED_PRESETS}", dim),
+            ("", None),
+            ("read-only for now — C or ESC to close", (150, 160, 180)),
+        ]
+        bw = min(WIN_W - 60, 640)
+        bh = 22 * len(lines) + 30
+        box = pygame.Surface((bw, bh), pygame.SRCALPHA)
+        box.fill((18, 20, 28, 240))
+        pygame.draw.rect(box, (120, 150, 110), box.get_rect(), 2)
+        yy = 16
+        for txt, col in lines:
+            if txt and col:
                 box.blit(font_lbl.render(txt, True, col), (18, yy))
             yy += 22
         window.blit(box, ((WIN_W - bw) // 2, (WIN_H - bh) // 2))
@@ -449,18 +521,23 @@ def main() -> int:
         screen.blit(font_big.render(f"▶ {btn_txt}", True, (255, 255, 255)), (pad, y)); y += 26
         if last_agent:
             acol = (150, 200, 150) if last_agent.startswith("code") else (255, 200, 130)
-            screen.blit(font.render(f"via {last_agent}", True, acol), (pad, y)); y += 18
-        if last_directive:
-            for ln in wrap("plan: " + last_directive, font, LW - 2 * pad)[:3]:
-                screen.blit(font.render(ln, True, (200, 180, 120)), (pad, y)); y += 16
-        y += 4
-        # RAM ground-truth state (telemetry)
+            screen.blit(font.render(f"via {last_agent}", True, acol), (pad, y)); y += 20
+        # RAM ground-truth state (telemetry) — wrapped so long values (e.g. the
+        # party string) don't run off the panel into the game view.
         ram_vals = {k: v for k, v in last_ram.items() if not k.startswith("_")}
         if ram_vals:
             tag = "fair" if fair else "CHEAT"
             screen.blit(font_lbl.render(f"RAM [{tag}]", True, (235, 180, 120)), (pad, y)); y += 18
+            ram_bottom = GH - 64
             for k, v in ram_vals.items():
-                screen.blit(font.render(f"  {k}={v}", True, (210, 170, 120)), (pad, y)); y += 16
+                if y > ram_bottom:
+                    break
+                lines = wrap(f"{k}={v}", font, LW - 2 * pad - 4)
+                for i, ln in enumerate(lines):
+                    if y > ram_bottom:
+                        break
+                    px = pad + (0 if i == 0 else 10)   # indent continuation lines
+                    screen.blit(font.render(ln, True, (210, 170, 120)), (px, y)); y += 15
         y += 6
         pygame.draw.line(screen, (45, 45, 55), (pad, y), (LW - pad, y)); y += 8
         screen.blit(font_lbl.render("recent:", True, (120, 120, 140)), (pad, y)); y += 18
@@ -500,6 +577,18 @@ def main() -> int:
         else:
             screen.blit(font.render("(not looked yet)", True, (90, 110, 120)), (xx, y)); y += 16
         y += 14
+        pygame.draw.line(screen, (45, 45, 55), (xx, y), (x0 + RW - pad, y)); y += 10
+        # DIRECTIVE (the Planner's current plan) + agent that acted
+        screen.blit(font_title.render("PLAN (planner)", True, (220, 190, 130)), (xx, y)); y += 22
+        if last_directive:
+            for ln in wrap(last_directive, font, maxw)[:3]:
+                screen.blit(font.render(ln, True, (220, 195, 140)), (xx, y)); y += 17
+        else:
+            screen.blit(font.render("(none yet)", True, (120, 110, 90)), (xx, y)); y += 17
+        if last_agent:
+            acol = (150, 200, 150) if last_agent.startswith("code") else (255, 200, 130)
+            screen.blit(font.render(f"via {last_agent}", True, acol), (xx, y)); y += 18
+        y += 10
         pygame.draw.line(screen, (45, 45, 55), (xx, y), (x0 + RW - pad, y)); y += 10
         screen.blit(font_title.render("THINKING", True, (170, 180, 210)), (xx, y)); y += 24
         thought = last_thought or ("(thinking about the first move)" if think_start else "")
@@ -549,6 +638,8 @@ def main() -> int:
         for e in pygame.event.get():
             if e.type == pygame.QUIT:
                 running = False
+            elif e.type == pygame.VIDEORESIZE:   # window expanded / maximized
+                apply_size(e.w, e.h)
             elif e.type == pygame.KEYDOWN:
                 if coach_active:                  # typing a message to the AI
                     if e.key == pygame.K_RETURN:
@@ -567,16 +658,23 @@ def main() -> int:
                     continue                      # swallow the key; don't reach game
                 if e.key == pygame.K_F1:          # settings/info overlay (pauses game)
                     overlay_active = not overlay_active
+                elif e.key == pygame.K_c:         # constants / tuning menu (pauses game)
+                    constants_active = not constants_active
                 elif e.key == pygame.K_f:         # fast-forward: cycle 1x/2x/4x/8x/16x
                     speed_idx = (speed_idx + 1) % len(SPEED_PRESETS)
                     speed = SPEED_PRESETS[speed_idx]
                     last_thought = f"[speed] {speed}x"
                     print(f"[speed] emulator {speed}x")
+                elif e.key == pygame.K_m:         # toggle game sound on/off
+                    sound_on = not sound_on and audio.ok
+                    last_thought = f"[sound] {'on' if sound_on else 'off'}"
+                    print(f"[sound] {'on' if sound_on else 'off'}"
+                          + ("" if audio.ok else " (audio unavailable)"))
                 elif e.key == pygame.K_SLASH:     # open the coach prompt (type to AI)
                     coach_active, coach_text = True, ""
                 elif e.key == pygame.K_ESCAPE:
-                    if overlay_active:
-                        overlay_active = False    # ESC closes the overlay first
+                    if overlay_active or constants_active:
+                        overlay_active = constants_active = False  # ESC closes menus first
                     else:
                         running = False
                 elif e.key == pygame.K_SPACE:
@@ -627,7 +725,11 @@ def main() -> int:
             except OSError:
                 pass
 
-        if not paused and not coach_active and not overlay_active:
+        # game audio plays only when enabled AND at normal speed and running
+        audio.set_enabled(sound_on and speed == 1 and not paused and not coach_active
+                          and not overlay_active and not constants_active)
+
+        if not paused and not coach_active and not overlay_active and not constants_active:
             if mode == "human":
                 pressed = pygame.key.get_pressed()
                 btns = [name for key, name in KEYMAP.items() if pressed[key]]
@@ -638,15 +740,28 @@ def main() -> int:
                 emu.run(speed)                    # fast-forward runs N frames/tick
                 last_buttons = btns
                 src = "gamepad+keyboard" if pad else "keyboard"
-                last_thought = f"(human control [{src}] — press TAB to hand back to the AI; the AI is watching & learning)"
+                last_thought = f"(human control [{src}] — TAB hands back to the AI; the Scout keeps watching)"
                 think_start = None
-                # Learn by watching: when the human makes a DELIBERATE move (an
-                # action button newly pressed), have the Scout note the situation
-                # and save it as a lesson. Runs off-thread, rate-limited.
+                # a completed Scout look -> refresh the SCENE + DIALOGUE panels
+                if human_future is not None and human_future.done():
+                    try:
+                        human_future.result()
+                    except Exception:
+                        pass
+                    if orch.scene is not None:
+                        last_scene = orch.scene.display()
+                        last_ram = _facts_cache
+                    last_screen_text = orch.last_screen_text
+                    human_future = None
+                # remember a deliberate move so the next look records it as a demo
                 new_press = [b for b in btns if b in ACTION_BTNS and b not in prev_human_btns]
+                if new_press:
+                    human_pending_btns = list(btns)
                 prev_human_btns = btns
                 now = time.time()
-                if (new_press and (now - last_demo_t) >= HUMAN_DEMO_COOLDOWN
+                # The Scout keeps looking while a human plays, so perception + dialogue
+                # stay live (and human demos get recorded). Rate-limited, off-thread.
+                if ((now - last_demo_t) >= HUMAN_LOOK_COOLDOWN
                         and (human_future is None or human_future.done())):
                     fr = emu.get_frame_rgb()
                     if fr is not None:
@@ -661,15 +776,16 @@ def main() -> int:
                             ow, oh = w, h
                             write_png(p, w, h, rgb)
                         try:
-                            _facts = ram_reader(emu)
+                            _facts_cache = ram_reader(emu)
                         except Exception:
-                            _facts = {}
+                            _facts_cache = {}
                         _obs = Observation(image_path=p, width=ow, height=oh,
                                            goal=goal, step=steps + 1,
-                                           ram_facts=_facts, manual=manual_text)
-                        human_future = pool.submit(orch.note_human, _obs, list(btns))
+                                           ram_facts=_facts_cache, manual=manual_text)
+                        human_future = pool.submit(orch.human_look, _obs,
+                                                   human_pending_btns or None)
+                        human_pending_btns = None
                         last_demo_t = now
-                        last_thought = f"(human: {'+'.join(btns)} — AI noting this)"
             else:
                 # AI state machine — the screen ALWAYS advances (never frozen); the
                 # NEXT decision is computed in the background WHILE the current action
@@ -788,10 +904,13 @@ def main() -> int:
         draw_topbar()
         if overlay_active:
             draw_overlay()
+        if constants_active:
+            draw_constants()
         pygame.display.flip()
         clock.tick(fps)
 
     pool.shutdown(wait=False, cancel_futures=True)
+    audio.close()
     try:                               # persist the game's battery saves on exit
         if emu.save_sram(sram_path):
             print(f"battery SRAM: wrote {sram_path}")

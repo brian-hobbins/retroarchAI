@@ -89,5 +89,70 @@ class KnowledgeBase:
             text = text[-max_chars:]
         return text
 
+    def replace_all(self, texts, step: int = 0) -> None:
+        """Replace the whole set (used when the Reflector condenses lessons)."""
+        self.facts, self._norms = [], set()
+        for t in texts:
+            if isinstance(t, str):
+                self.add(t, step)
+        self._save()
+
     def count(self) -> int:
         return len(self.facts)
+
+
+class StoryLog:
+    """Narrative / lore log written as markdown in the kb dir (knowledge/story.md).
+
+    Story and lore the Planner tags go here instead of the notebook, so the prompt
+    isn't bloated with narration every turn. It is consulted only on request (when a
+    puzzle or hidden object might need story context). Each line carries its tag.
+    """
+
+    def __init__(self, game_dir: str):
+        self.dir = os.path.join(game_dir, "knowledge")
+        os.makedirs(self.dir, exist_ok=True)
+        self.path = os.path.join(self.dir, "story.md")
+        self._seen = set()
+        if os.path.isfile(self.path):
+            try:
+                with open(self.path, encoding="utf-8", errors="replace") as f:
+                    for line in f:
+                        self._seen.add(_norm(line))
+            except OSError:
+                pass
+
+    def add(self, text: str, tag: str = "story", step: int = 0) -> bool:
+        text = text.strip()
+        if not text:
+            return False
+        key = _norm(text)
+        if key in self._seen:
+            return False
+        self._seen.add(key)
+        new_file = not os.path.isfile(self.path)
+        try:
+            with open(self.path, "a", encoding="utf-8") as f:
+                if new_file:
+                    f.write("# Story & lore log\n\n"
+                            "Narrative, lore and NPC dialogue the AI noted. Consulted "
+                            "for clues to puzzles / hidden things.\n\n")
+                f.write(f"- `[{tag}]` {text}\n")
+        except OSError:
+            return False
+        return True
+
+    def tail(self, n: int = 40, max_chars: int = 2000) -> str:
+        """Recent entries, for injecting when the Planner asks to consult the story."""
+        if not os.path.isfile(self.path):
+            return ""
+        try:
+            with open(self.path, encoding="utf-8", errors="replace") as f:
+                lines = [l.rstrip() for l in f if l.startswith("- ")]
+        except OSError:
+            return ""
+        txt = "\n".join(lines[-n:])
+        return txt[-max_chars:]
+
+    def count(self) -> int:
+        return len(self._seen)
